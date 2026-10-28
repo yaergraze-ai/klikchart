@@ -1,10 +1,25 @@
-# Klikchart Commerce 4.8.1 — Marketplace Full-Stack · Vercel Ready
+# Klikchart Commerce 4.9.0 — Marketplace Full-Stack · Vercel Ready
 
 **Satu panduan untuk menjalankan, memperbarui, dan menguji Klikchart.**
 
-> **Pembaruan UI v4.8.1:** lihat bagian Pembaruan UI v4.8.1 di bawah untuk perubahan dashboard, pengaturan alamat, ikon, dan cara memperbarui versi yang sedang berjalan. Proyek ini memakai Express/Node.js, Supabase Auth, PostgreSQL dan Storage, SMTP Email, serta Fonnte untuk OTP WhatsApp. Antarmuka berbeda menurut peran **Pembeli**, **Penjual**, dan **Owner**.
+> **Pembaruan UI v4.9.0:** lihat bagian Pembaruan UI v4.9.0 di bawah untuk perubahan dashboard, pengaturan alamat, ikon, dan cara memperbarui versi yang sedang berjalan. Proyek ini memakai Express/Node.js, Supabase Auth, PostgreSQL dan Storage, SMTP Email, serta Fonnte untuk OTP WhatsApp. Antarmuka berbeda menurut peran **Pembeli**, **Penjual**, dan **Owner**.
 
 > **Status:** marketplace MVP dengan checkout **Cash on Delivery (COD) internal**. **Belum** terintegrasi payment gateway, perhitungan ongkir kurir real-time, ekspedisi otomatis, escrow, refund atau pencairan dana. Fitur tersebut tidak boleh dipasarkan sebagai aktif sebelum integrasi dan pengujian end-to-end selesai.
+
+## Pembaruan desain v4.9.0 — Grid responsif dan tabel mobile
+
+Paket ini adalah **source lengkap** berbasis Klikchart v4.8.1. Penyesuaian utama:
+
+- Tambahan `public/assets/dashboard/ui-v49.css` sebagai aturan final yang menyelaraskan tata letak storefront, panel Pembeli, Owner, dan Penjual.
+- Mobile: banner tidak menutupi teks; filter jadi grid dua kolom; kartu produk satu kolom pada layar sempit 320–350px; tombol selalu berukuran konsisten.
+- Tablet/desktop: grid produk 2–4 kolom sesuai ruang, kartu KPI mempunyai tinggi seragam, tombol panel tidak bertabrakan dengan judul.
+- Tabel manajemen Owner/Penjual menjadi kartu dengan label kolom pada layar mobile, menggunakan `public/assets/dashboard/ui-v49.js` tanpa mengganti data/API. Desktop tetap memakai tabel.
+- Halaman Akun dan Keranjang: jarak, ukuran input, pengelompokan identitas, dan baris jumlah produk ditata ulang.
+- Dialog alamat mempertahankan header dan tombol aksi dalam area modal, isi tetap bisa digulir; tidak mengubah bentuk payload API alamat.
+
+**Tidak ada migrasi SQL atau API eksternal baru dalam rilis ini.** Fitur COD internal, login OTP, dan integrasi Vercel/Supabase tetap menggunakan backend semula. Jangan pernah memasukkan `.env` asli atau key server ke GitHub.
+
+**Pengujian:** `npm.cmd run lint`, `npm.cmd test` dan uji tampilan viewport 320/390/768/1440 dilakukan dengan data API simulasi. Pengujian transaksi, OTP, pembayaran, serta Supabase produksi tetap perlu dijalankan di lingkungan milikmu.
 
 ## 1. Mulai cepat di Windows
 
@@ -248,7 +263,7 @@ Paket v4.7 berfokus pada penyempurnaan aplikasi yang sudah ada, bukan perubahan 
 
 ---
 
-## Pembaruan UI v4.8.1 — Paket Lengkap
+## Pembaruan UI v4.9.0 — Paket Lengkap
 
 Paket ini berisi seluruh source project Klikchart (frontend, backend Express, SQL Supabase, aset desain, dokumentasi, dan pengujian). Basisnya adalah source v4.7 dari repository resmi `yaergraze-ai/klikchart` dengan perbaikan UI v4.8 dan v4.8.1. Ini **bukan aplikasi demonstrasi baru**: API marketplace dan autentikasi lama tetap dipertahankan.
 

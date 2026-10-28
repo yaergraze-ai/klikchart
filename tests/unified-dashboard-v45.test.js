@@ -33,7 +33,7 @@ test('navigating routes does not repeat bootstrap requests',()=>{
  assert.ok(ui.split("window.addEventListener('hashchange',")[1].split('\n')[0].includes('routeFromHash()')); 
 });
 test('v4.6 schema-free update and role guards remain intact',()=>{
- assert.match(read('package.json'),/"version": "4\.8\.1"/);
+ assert.match(read('package.json'),/"version": "4\.9\.0"/);
  assert.match(read('README.md'),/Tidak ada perubahan SQL dari v4\.4 → v4\.6/);
  assert.match(ui,/role\(\)!=='owner'&&next\.startsWith\('owner'\)/);
  assert.match(ui,/role\(\)==='buyer'&&next\.startsWith\('seller'\)/);

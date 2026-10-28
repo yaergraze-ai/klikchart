@@ -54,5 +54,5 @@ test('v4.3 requires additive migration 010 and retains 009 intact',()=>{
  assert.match(read('supabase/FRESH_DATABASE.sql'),/market_owner_overview/);
  assert.match(migration,/ALTER TABLE public\.market_products/);
  assert.doesNotMatch(migration,/drop\s+table\s+(?!if\s+exists)/i);
- assert.match(read('package.json'),/"version": "4\.8\.1"/);
+ assert.match(read('package.json'),/"version": "4\.9\.0"/);
 });
