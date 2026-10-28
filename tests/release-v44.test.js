@@ -39,7 +39,7 @@ test('private API responses are not cached and role enforcement stays server-sid
  assert.match(app,/Cache-Control','no-store, max-age=0'/);
  assert.match(backend,/requireRole\(req,\['owner'\]\)/);
  assert.match(backend,/await seller\(req\)/);
- assert.match(read('package.json'),/"version": "4\.9\.0"/);
+ assert.match(read('package.json'),/"version": "5\.0\.0"/);
 });
 
 test('README documents paths for existing and empty Supabase projects and actual COD limitations',()=>{

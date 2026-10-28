@@ -1,7 +1,7 @@
-name: Klikchart source audit and full ZIP
+name: Klikchart QA and complete source ZIP
 on:
   push:
-    branches: [ui/klikchart-v48-refinement]
+    branches: [main, ui/klikchart-v48-refinement]
   workflow_dispatch:
 permissions:
   contents: read
@@ -30,7 +30,7 @@ jobs:
           from pathlib import Path
           import zipfile
           root=Path.cwd()
-          target=Path('/tmp/klikchart-fullstack-v4.8-complete.zip')
+          target=Path('/tmp/klikchart-fullstack-v5.0.0-complete.zip')
           forbidden={'.git','node_modules','.vercel','.next','coverage'}
           with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED,compresslevel=8) as z:
               for p in sorted(root.rglob('*')):
@@ -46,7 +46,7 @@ jobs:
       - name: Upload complete source code
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: klikchart-fullstack-v4.8-complete
-          path: /tmp/klikchart-fullstack-v4.8-complete.zip
+          name: klikchart-fullstack-v5.0.0-complete
+          path: /tmp/klikchart-fullstack-v5.0.0-complete.zip
           if-no-files-found: error
           retention-days: 30

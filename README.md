@@ -1,10 +1,22 @@
-# Klikchart Commerce 4.9.0 — Marketplace Full-Stack · Vercel Ready
+# Klikchart Commerce 5.0.0 — Marketplace Full-Stack · Vercel Ready
 
 **Satu panduan untuk menjalankan, memperbarui, dan menguji Klikchart.**
 
-> **Pembaruan UI v4.9.0:** lihat bagian Pembaruan UI v4.9.0 di bawah untuk perubahan dashboard, pengaturan alamat, ikon, dan cara memperbarui versi yang sedang berjalan. Proyek ini memakai Express/Node.js, Supabase Auth, PostgreSQL dan Storage, SMTP Email, serta Fonnte untuk OTP WhatsApp. Antarmuka berbeda menurut peran **Pembeli**, **Penjual**, dan **Owner**.
+> **Pembaruan UI v5.0.0:** lihat bagian Pembaruan UI v5.0.0 di bawah untuk perubahan dashboard, pengaturan alamat, ikon, dan cara memperbarui versi yang sedang berjalan. Proyek ini memakai Express/Node.js, Supabase Auth, PostgreSQL dan Storage, SMTP Email, serta Fonnte untuk OTP WhatsApp. Antarmuka berbeda menurut peran **Pembeli**, **Penjual**, dan **Owner**.
 
 > **Status:** marketplace MVP dengan checkout **Cash on Delivery (COD) internal**. **Belum** terintegrasi payment gateway, perhitungan ongkir kurir real-time, ekspedisi otomatis, escrow, refund atau pencairan dana. Fitur tersebut tidak boleh dipasarkan sebagai aktif sebelum integrasi dan pengujian end-to-end selesai.
+
+## Pembaruan UI v5.0.0 — Konsistensi E-Commerce & Responsif
+
+Rilis ini mengutamakan keterbacaan, tata letak dan interaksi antarmuka yang benar-benar dapat digunakan. **Source backend dan skema Supabase tetap sama dengan v4.9.0; tidak perlu migrasi SQL baru.**
+
+- Desain menyeluruh: `public/assets/dashboard/ui-v50.css` adalah lapisan stylesheet terakhir. CSS sebelumnya tetap disimpan untuk kompatibilitas komponen yang ada.
+- Katalog: kartu produk dengan satu tombol utama, favorit terpisah, navigasi detail melalui foto/judul, validasi stok kosong, dan grid menyesuaikan ukuran viewport.
+- Filter: pada mobile dibuka melalui panel **Filter dan urutkan**. Kategori, harga minimum/maksimum dan urutan diterapkan bersama satu tombol sehingga tidak memotong proses input. Pencarian memakai tombol dan Enter.
+- Owner/Penjual: gaya header, kartu ringkasan, tabel manajemen, sidebar dan tombol konsisten.
+- Tampilan responsif dan fokus aksesibilitas diperiksa pada 320, 390, 768, 1440 dan 1918 piksel memakai Chromium dengan data simulasi; kode diuji lewat `npm run lint` dan `npm test`.
+
+Referensi UX dan catatan teknis tersedia di `docs/UI-v5.0.0.md`. Pembayaran, OTP, upload produk, dan database **belum diuji terhadap layanan produksi** pada revisi ini. Pertahankan konfigurasi environment yang berfungsi, lakukan pengujian di staging sebelum deployment produksi.
 
 ## Pembaruan desain v4.9.0 — Grid responsif dan tabel mobile
 
