@@ -31,5 +31,5 @@ test('account changes remain authenticated and schema-free with same SQL install
  assert.match(app,/\/api\/market\/profile/);
  assert.match(app,/account\.changePassword/);
  assert.match(read('README.md'),/tidak ada migration baru dari v4\.5 ke v4\.6/i);
- assert.match(read('package.json'),/"version": "4\.7\.0"/);
+ assert.match(read('package.json'),/"version": "4\.8\.1"/);
 });

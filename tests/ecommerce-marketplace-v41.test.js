@@ -48,7 +48,8 @@ test('dashboard uses live marketplace API and never fabricates fake purchases',(
 test('COD cannot be confused with payment gateway and owner privilege requires manual SQL',()=>{
  assert.match(sql,/payment_method text not null default 'cod' check\(payment_method='cod'\)/);
  assert.match(sql,/seller_reported_collected/);
- assert.match(ui,/Tidak terintegrasi dengan kurir atau payment gateway/);
+ assert.match(ui,/Pembayaran dilakukan saat barang diterima/);
+ assert.match(ui,/Pembayaran online, kurir otomatis dan refund tetap membutuhkan integrasi pihak ketiga/);
  assert.match(upgrade,/OWNER_BOOTSTRAP\.sql/);
  assert.match(read('supabase/OWNER_BOOTSTRAP.sql'),/OWNER_EMAIL_HERE/);
  assert.doesNotMatch(server,/owner\/register|promote\/owner/);

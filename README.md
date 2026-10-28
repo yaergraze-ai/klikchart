@@ -1,6 +1,8 @@
-# Klikchart Commerce 4.7.0 — Marketplace Full-Stack · Vercel Ready
+# Klikchart Commerce 4.8.1 — Marketplace Full-Stack · Vercel Ready
 
-**Satu panduan untuk menjalankan, memperbarui, dan menguji Klikchart.** Proyek ini memakai Express/Node.js, Supabase Auth, PostgreSQL dan Storage, SMTP Email, serta Fonnte untuk OTP WhatsApp. Antarmuka berbeda menurut peran **Pembeli**, **Penjual**, dan **Owner**.
+**Satu panduan untuk menjalankan, memperbarui, dan menguji Klikchart.**
+
+> **Pembaruan UI v4.8.1:** lihat bagian Pembaruan UI v4.8.1 di bawah untuk perubahan dashboard, pengaturan alamat, ikon, dan cara memperbarui versi yang sedang berjalan. Proyek ini memakai Express/Node.js, Supabase Auth, PostgreSQL dan Storage, SMTP Email, serta Fonnte untuk OTP WhatsApp. Antarmuka berbeda menurut peran **Pembeli**, **Penjual**, dan **Owner**.
 
 > **Status:** marketplace MVP dengan checkout **Cash on Delivery (COD) internal**. **Belum** terintegrasi payment gateway, perhitungan ongkir kurir real-time, ekspedisi otomatis, escrow, refund atau pencairan dana. Fitur tersebut tidak boleh dipasarkan sebagai aktif sebelum integrasi dan pengujian end-to-end selesai.
 
@@ -242,3 +244,58 @@ Paket v4.7 berfokus pada penyempurnaan aplikasi yang sudah ada, bukan perubahan 
 **Deployment Vercel:** Push isi folder proyek (harus ada `package.json` dan `vercel.json` di root repository), lalu biarkan GitHub memicu deployment baru. Pastikan `APP_URL` sama dengan domain Production dan variabel rahasia tersedia di Vercel Settings. Jangan commit file `.env`.
 
 **Status rilis:** Penyempurnaan tampilan ini bukan sertifikasi kesiapan untuk transaksi keuangan. Gateway pembayaran online, kurir otomatis, retur/refund, dan rekonsiliasi pembayaran belum disediakan. Uji alur pembeli, penjual, dan Owner di lingkungan staging sebelum membuka transaksi publik.
+
+
+---
+
+## Pembaruan UI v4.8.1 — Paket Lengkap
+
+Paket ini berisi seluruh source project Klikchart (frontend, backend Express, SQL Supabase, aset desain, dokumentasi, dan pengujian). Basisnya adalah source v4.7 dari repository resmi `yaergraze-ai/klikchart` dengan perbaikan UI v4.8 dan v4.8.1. Ini **bukan aplikasi demonstrasi baru**: API marketplace dan autentikasi lama tetap dipertahankan.
+
+### Ringkasan perubahan
+
+- Dashboard Owner, Penjual dan Pembeli: warna, hierarki, kartu, tabel, navigasi, dan responsivitas diselaraskan.
+- Emoji dekoratif di dashboard diganti ikon SVG inline dari source code; tidak bergantung pada CDN, Bootstrap, atau library ikon berbayar.
+- Tombol: hover/active/focus/ripple lebih rapi, menghormati `prefers-reduced-motion`, serta proteksi klik ganda pada perubahan data yang penting.
+- Dialog penghapusan alamat, pengiriman, keputusan penjual, moderasi produk, dan pencatatan COD kini memakai dialog aplikasi, bukan jendela `confirm()`/`prompt()` bawaan browser.
+- Editor alamat dengan penerima, telepon, provinsi (datalist), kota/kabupaten, kode pos lima digit, dan alamat lengkap. Tombol Simpan tetap terlihat di layar kecil, input mendapat contoh dan bantuan yang jelas.
+- Bahasa antarmuka pelanggan diperhalus; catatan internal seperti nama penyedia database dan migration dihilangkan dari tampilan biasa.
+- Login/Register/Forgot Password: fokus input, efek interaksi, serta ukuran komponen diperbaiki tanpa mengganti gaya visual asli.
+- Tidak mengubah API, skema Supabase, role, status OTP, checkout COD, atau mekanisme login; tidak ada migrasi SQL baru khusus UI v4.8.1.
+
+### Instalasi dan pembaruan
+
+1. **Cadangkan folder repository Klikchart lama dan database Supabase terlebih dahulu.**
+2. Ekstrak ZIP. Isi proyek ada di folder `klikchart/` yang memuat `package.json`, `vercel.json`, `api/`, `backend/`, `public/`, dan `supabase/`.
+3. Salin isi **folder `klikchart/`** ke root repository yang memang digunakan oleh Vercel, **bukan** ke folder `klikchart/klikchart/` bertingkat.
+4. **Jangan salin/commit file `.env` asli**. `.env.example` hanya daftar nama variabel. Gunakan environment variables Vercel yang sudah dikonfigurasi.
+5. Jalankan lokal dari folder proyek melalui PowerShell:
+
+```powershell
+npm.cmd ci
+npm.cmd run lint
+npm.cmd test
+npm.cmd start
+```
+
+6. Cek `http://localhost:3000/dashboard`, `/login`, `/register`, lalu coba tiap peran sesuai izin akun. Setelah uji lokal dan konfigurasi Vercel aman, push ke branch pengembangan dan uji Preview sebelum merge ke `main`.
+
+### Database dan API
+
+**Tidak perlu SQL baru jika database telah memakai skema v4.4 yang sesuai dengan kode v4.7 ini.** Jangan jalankan `FRESH_DATABASE.sql` pada database berisi data. Untuk database baru, gunakan panduan pemilihan satu jalur SQL di `README.md`.
+
+Untuk UI saat ini, tidak perlu API key pihak ketiga tambahan. Editor alamat menerima teks yang diisi pengguna, bukan pencarian wilayah/kurir real-time. Fitur di luar cakupan yang memerlukan integrasi tersendiri meliputi:
+
+- Otomatisasi provinsi → kabupaten → kecamatan → kelurahan dengan API wilayah tepercaya.
+- Harga dan nomor resi ekspedisi real-time.
+- Payment gateway dan verifikasi pembayaran eksternal.
+- Push notification/email status pesanan otomatis di luar proses OTP yang sudah dikonfigurasi.
+
+**Rahasia yang tetap diperlukan untuk aplikasi asli**: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` (backend only), `SESSION_SECRET`, `OTP_SECRET`, dan paling sedikit satu provider OTP (SMTP atau Fonnte). Gunakan `.env.example` sebagai acuan lengkap. Jangan kirim rahasia ke chat atau commit ke GitHub.
+
+### Batas pengujian
+
+- Unit/static tests: 139 tes lulus pada Node.js; lint JavaScript termasuk file UI v4.8.1 lulus.
+- Uji tampilan browser pada 320×568, 390×844, dan 1440×900 memakai respons API **simulasi**: tidak ada horizontal scroll atau error JavaScript pada katalog dan editor alamat.
+- Belum ada verifikasi end-to-end terhadap akun asli, OTP provider produksi, pembayaran riil, kurir, maupun data pesanan Supabase live. Status `READY` dari Vercel hanya menunjukkan build/deployment berhasil, bukan jaminan fungsi bisnis.
+- Pemeriksaan setiap variasi layar/perangkat, konektivitas email/WhatsApp, dan keamanan produksi tetap diperlukan sebelum peluncuran untuk pengguna sungguhan.

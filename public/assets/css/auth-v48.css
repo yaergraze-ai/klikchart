@@ -1,0 +1,23 @@
+/* Klikchart 4.8 auth refinements — preserve existing Figma composition. */
+:root{--auth-focus:#c4a2ee}
+.auth-card{box-shadow:0 21px 65px rgba(7,5,25,.26);border-radius:clamp(18px,2.1vw,28px)}
+.auth-content{min-width:0}
+.auth-content :is(input,select,textarea){transition:border-color .16s ease,box-shadow .16s ease,background-color .16s ease}
+.auth-content :is(input,select,textarea):hover:not(:disabled){border-color:rgba(212,169,242,.64)}
+.auth-content :is(input,select,textarea):focus-visible{outline:2px solid var(--auth-focus);outline-offset:2px}
+:is(.primary-button,.secondary-button,.text-link,.header nav a,.close-dialog,.footer button){-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:transform .16s ease,background-color .16s ease,border-color .16s ease,box-shadow .16s ease,color .16s ease}
+:is(.primary-button,.secondary-button,.text-link,.header nav a,.close-dialog,.footer button):not(:disabled):active{transform:scale(.98)}
+:is(.primary-button,.secondary-button,.text-link,.header nav a,.close-dialog,.footer button):focus-visible{outline:2px solid var(--auth-focus)!important;outline-offset:3px}
+.primary-button:hover:not(:disabled){box-shadow:0 8px 23px rgba(157,103,227,.21)}
+.kc-auth-ripple-host{position:relative;overflow:hidden;isolation:isolate}
+.kc-auth-ripple{position:absolute;left:var(--x);top:var(--y);width:12px;height:12px;border-radius:50%;pointer-events:none;opacity:.2;background:currentColor;transform:translate(-50%,-50%) scale(0);animation:kc-auth-ripple .45s ease-out forwards}
+@keyframes kc-auth-ripple{to{transform:translate(-50%,-50%) scale(var(--scale));opacity:0}}
+@media(max-width:760px){
+ .auth-card{box-shadow:0 13px 32px rgba(8,5,24,.18)}
+ .auth-content input{font-size:16px}
+ .auth-content :is(button,a){min-height:40px}
+}
+@media(prefers-reduced-motion:reduce){
+ .kc-auth-ripple{display:none}
+ :is(.primary-button,.secondary-button,.text-link,.header nav a,.close-dialog,.footer button){transition:none!important}
+}

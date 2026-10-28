@@ -71,5 +71,5 @@ test('dashboard keeps app chrome instead of replacing whole page on every view',
 test('fresh and upgrade SQL files exist and version increments',()=>{
  assert.match(read('supabase/FRESH_DATABASE.sql'),/market_owner_overview/);
  assert.match(read('README.md'),/UPGRADE_V4_1_TO_V4_4\.sql/);
- assert.match(read('package.json'),/"version": "4\.7\.0"/);
+ assert.match(read('package.json'),/"version": "4\.8\.1"/);
 });

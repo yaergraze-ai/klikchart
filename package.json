@@ -1,13 +1,13 @@
 {
   "name": "klikchart-auth",
-  "version": "4.7.0",
+  "version": "4.8.1",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node --watch server.js",
     "start": "node server.js",
     "test": "node --test tests/*.test.js",
-    "lint": "node --check server.js && node --check api/index.js && node --check backend/app.js && node --check backend/services/auth.js && node --check backend/services/registration.js && node --check backend/services/otp.js && node --check public/assets/js/app.js && node --check public/assets/js/ui/forms.js && node --check public/assets/js/i18n.js && node --check public/assets/js/api.js && node --check public/assets/js/ui/motion.js && node --check public/assets/js/ui/hero-motion.js && node --check public/assets/js/ui/paper-flight.js && node --check backend/services/smtp.js && node --check scripts/check-smtp.mjs && node --check public/assets/dashboard/dashboard.js && node --check backend/services/marketplace.js && node --check backend/services/account.js",
+    "lint": "node --check server.js && node --check api/index.js && node --check backend/app.js && node --check backend/services/auth.js && node --check backend/services/registration.js && node --check backend/services/otp.js && node --check public/assets/js/app.js && node --check public/assets/js/ui/forms.js && node --check public/assets/js/i18n.js && node --check public/assets/js/api.js && node --check public/assets/js/ui/motion.js && node --check public/assets/js/ui/hero-motion.js && node --check public/assets/js/ui/paper-flight.js && node --check backend/services/smtp.js && node --check scripts/check-smtp.mjs && node --check public/assets/dashboard/dashboard.js && node --check backend/services/marketplace.js && node --check backend/services/account.js && node --check public/assets/dashboard/ui-v48.js && node --check public/assets/js/ui/auth-v48.js",
     "smtp:check": "node scripts/check-smtp.mjs",
     "smtp:test": "node scripts/check-smtp.mjs --send"
   },
