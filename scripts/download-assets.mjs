@@ -1,0 +1,7 @@
+import fs from 'node:fs/promises';
+const assets={headphones:'photo-1546435770-a3e426bf472b',bag:'photo-1553062407-98eeb64c6a62',chair:'photo-1598300042247-d088f8ab3a91',watch:'photo-1523275335684-37898b6baf30',shoes:'photo-1542291026-7eec264c27ff',camera:'photo-1516035069371-29a1b244cc32'};
+await fs.mkdir('public/assets/images/products',{recursive:true});
+await Promise.all(Object.entries(assets).map(async([name,id])=>{const url=`https://images.unsplash.com/${id}?auto=format&fit=crop&w=700&q=85&fm=webp`;const r=await fetch(url);if(!r.ok)throw Error(name+': '+r.status);await fs.writeFile(`public/assets/images/products/${name}.webp`,Buffer.from(await r.arrayBuffer()));console.log('Saved '+name)}));
+await fs.copyFile('public/assets/images/products/headphones.webp','public/assets/images/hero-headphones.webp');
+await fs.copyFile('public/assets/images/products/chair.webp','public/assets/images/home-chair.webp');
+await fs.writeFile('docs/ASSETS.md','# Katalog ilustrasi\n\nFoto produk contoh berasal dari Unsplash; bukan daftar produk nyata atau afiliasi merek. File disertakan secara lokal agar demo tidak membutuhkan CDN gambar. Ganti foto dan data sebelum memakai katalog untuk penjualan.\n\n'+Object.entries(assets).map(([name,id])=>`- ${name}: https://images.unsplash.com/${id}`).join('\n')+'\n\nIkon antarmuka: SVG inline, disimpan di dashboard.js. Tidak memerlukan icon font eksternal.\n');

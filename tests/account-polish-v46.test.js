@@ -30,6 +30,6 @@ test('mobile account menu and reduced-motion styles exist',()=>{
 test('account changes remain authenticated and schema-free with same SQL install plan',()=>{
  assert.match(app,/\/api\/market\/profile/);
  assert.match(app,/account\.changePassword/);
- assert.match(read('README.md'),/tidak ada migration baru dari v4\.5 ke v4\.6/i);
- assert.match(read('package.json'),/"version": "5\.0\.0"/);
+ assert.match(read('docs/LEGACY-v5.md'),/tidak ada migration baru dari v4\.5 ke v4\.6/i);
+ assert.match(read('package.json'),/"version": "6\.0\.0"/);
 });

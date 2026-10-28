@@ -16,7 +16,7 @@ test('Figma artwork retains all original user vector paths and animation code',(
 test('webpage uses only the original illustration, not the v2.8 invention',()=>{
  assert.match(html,/src="\/assets\/images\/klikchart-figma-storefront-v31\.svg"/);
  assert.doesNotMatch(html,/src="\/assets\/images\/klikchart-orbit-rebuilt\.svg"/);
- assert.match(html,/v31-artwork-readable\.css/);
+ assert.match(html,/auth\.css/);
  assert.match(css,/pointer-events:none/);
  assert.match(css,/prefers-reduced-motion:reduce/);
 });

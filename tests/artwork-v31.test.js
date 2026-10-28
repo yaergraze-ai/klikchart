@@ -7,7 +7,7 @@ const html=read('public/index.html');
 const css=read('public/assets/css/v31-artwork-readable.css');
 test('v3.1 displays its own original-Figma-geometry artwork source',()=>{
  assert.match(html,/src="\/assets\/images\/klikchart-figma-storefront-v31\.svg"/);
- assert.match(html,/v31-artwork-readable\.css/);
+ assert.match(html,/auth\.css/);
  assert.match(svg,/id="Storefront_illustration"/);
  assert.match(svg,/id="shopping-bag"/);
  assert.match(svg,/@keyframes kf_/);

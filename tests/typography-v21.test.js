@@ -6,8 +6,8 @@ const css=readFileSync(new URL('../public/assets/css/v23-elastic-layout.css',imp
 const id=JSON.parse(readFileSync(new URL('../public/assets/i18n/id.json',import.meta.url),'utf8'));
 const en=JSON.parse(readFileSync(new URL('../public/assets/i18n/en.json',import.meta.url),'utf8'));
 test('typography override loaded last and retains live form rendering',()=>{
- assert.ok(html.includes('/assets/css/v23-elastic-layout.css'));
- assert.ok(html.indexOf('v23-elastic-layout.css')>html.indexOf('v20-polish.css'));
+ assert.ok(html.includes('/assets/css/auth.css'));
+ assert.equal((html.match(/href="\/assets\/css\/auth\.css/g)||[]).length,1);
  assert.ok(html.includes('id="auth-content"'));
 });
 test('hero and form typography are separate responsive layers',()=>{

@@ -5,7 +5,7 @@ const js=readFileSync(new URL('../public/assets/dashboard/dashboard.js',import.m
 const html=readFileSync(new URL('../public/dashboard.html',import.meta.url),'utf8');
 const css=readFileSync(new URL('../public/assets/dashboard/ui-v47.css',import.meta.url),'utf8');
 test('v4.7 uses common responsive UI stylesheet and reduced motion',()=>{
- assert.match(html,/ui-v47\.css/);
+ assert.match(html,/commerce\.css/);
  assert.match(css,/prefers-reduced-motion/);
  assert.match(css,/max-width:520px/);
 });

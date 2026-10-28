@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 const html=readFileSync(new URL('../public/index.html',import.meta.url),'utf8');
 const css=readFileSync(new URL('../public/assets/css/v25-frame-spacing.css',import.meta.url),'utf8');
-test('final Figma artwork stylesheet follows earlier theme overrides',()=>{
+test('auth uses one active stylesheet',()=>{
   const versions=[...html.matchAll(/\/assets\/css\/([\w.-]+\.css)/g)].map(x=>x[1]);
-  assert.deepEqual(versions.slice(-5),['v30-legibility.css','v31-artwork-readable.css','v39-account-contacts.css','auth-v48.css','paper-flight.css']);
+  assert.deepEqual(versions,['auth.css']);
 });
 test('header/footer preserve centered navigation and symmetric 3-column structure',()=>{
   assert.match(css,/grid-template-columns:\s*minmax\(0,1fr\) auto minmax\(0,1fr\)/);

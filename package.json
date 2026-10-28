@@ -1,6 +1,6 @@
 {
-  "name": "klikchart-auth",
-  "version": "5.0.0",
+  "name": "klikchart-commerce",
+  "version": "6.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,10 +9,13 @@
     "test": "node --test tests/*.test.js",
     "lint": "node --check server.js && node --check api/index.js && node --check backend/app.js && node --check backend/services/auth.js && node --check backend/services/registration.js && node --check backend/services/otp.js && node --check public/assets/js/app.js && node --check public/assets/js/ui/forms.js && node --check public/assets/js/i18n.js && node --check public/assets/js/api.js && node --check public/assets/js/ui/motion.js && node --check public/assets/js/ui/hero-motion.js && node --check public/assets/js/ui/paper-flight.js && node --check backend/services/smtp.js && node --check scripts/check-smtp.mjs && node --check public/assets/dashboard/dashboard.js && node --check backend/services/marketplace.js && node --check backend/services/account.js && node --check public/assets/dashboard/ui-v48.js && node --check public/assets/js/ui/auth-v48.js && node --check public/assets/dashboard/ui-v49.js",
     "smtp:check": "node scripts/check-smtp.mjs",
-    "smtp:test": "node scripts/check-smtp.mjs --send"
+    "smtp:test": "node scripts/check-smtp.mjs --send",
+    "demo": "node demo/server.js",
+    "test:e2e": "node scripts/browser-check.mjs",
+    "check": "node scripts/check.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.0",
@@ -20,6 +23,9 @@
     "dotenv": "^16.6.1",
     "express": "^4.21.2",
     "helmet": "^8.1.0",
-    "nodemailer": "^7.0.3"
+    "nodemailer": "^10.2.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1"
   }
 }

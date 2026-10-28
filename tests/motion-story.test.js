@@ -10,7 +10,7 @@ const app = read('../public/assets/js/app.js');
 test('Provided animated SVG ornament is used without embedding iframe',()=>{
  assert.doesNotMatch(html,/klikchart-elastic-store\.svg/);
  assert.match(html,/class="klc-motion-art"/);
- assert.match(html,/motion-story\.css/);
+ assert.match(html,/auth\.css/);
  assert.doesNotMatch(html,/<iframe/);
  assert.doesNotMatch(html,/class="hero-bag"/);
  assert.match(css,/klc-view-enter/);

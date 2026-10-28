@@ -14,6 +14,7 @@ document.addEventListener('pointerdown', (event) => {
   dot.style.setProperty('--ripple-scale', String(Math.ceil(Math.max(rect.width, rect.height) / 6) + 8));
   target.classList.add('kc-ripple-target');
   target.appendChild(dot);
+  setTimeout(()=>dot.remove(),600);
   dot.addEventListener('animationend', () => { dot.remove(); }, {once:true});
 }, {passive:true});
 

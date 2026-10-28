@@ -6,10 +6,10 @@ const dashboard=read('public/assets/dashboard/dashboard.js');
 const html=read('public/dashboard.html');
 const css=read('public/assets/dashboard/ui-v50.css');
 
-test('final 5.0 stylesheet loaded after all older dashboard themes',()=>{
+test('commerce uses one active stylesheet',()=>{
   const links=[...html.matchAll(/\/assets\/dashboard\/([\w.-]+\.css)/g)].map(m=>m[1]);
-  assert.equal(links.at(-1),'ui-v50.css');
-  assert.ok(links.includes('ui-v49.css'));
+  assert.equal(links.at(-1),'commerce.css');
+  assert.equal(links.length,1);
 });
 test('commerce cards have accessible wishlist, detail, stock, and cart actions',()=>{
   for(const key of ['kc-favorite','kc-product-title','view-product:','wishlist-add:','cart-add:','kc-atc-compact'])assert.ok(dashboard.includes(key),key);

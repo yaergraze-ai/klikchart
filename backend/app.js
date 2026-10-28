@@ -19,7 +19,7 @@ app.use(helmet({contentSecurityPolicy:{directives:{defaultSrc:["'self'"],scriptS
 app.use(express.json({limit:'16kb'}));app.use(cookieParser());app.use('/api',(req,res,next)=>{res.setHeader('Cache-Control','no-store, max-age=0');next();});
 app.use('/api',requireOrigin);
 const wrap=fn=>(req,res,next)=>Promise.resolve().then(()=>fn(req,res)).then(data=>{if(!res.headersSent)ok(res,data);}).catch(next);
-app.get('/api/runtime',wrap(async()=>({name:'Klikchart',service:'available',version:'4.7.0'})));
+app.get('/api/runtime',wrap(async()=>({name:'Klikchart',service:'available',version:'6.0.0'})));
 app.get('/api/config',wrap(async()=>({channels:auth.channels(),loginRequiresOTP:true,signupRequiresOTP:true,languages:['id','en']})));
 app.post('/api/register',limited('register',5,3600),wrap((req,res)=>auth.register(req,res)));
 app.post('/api/register/otp/send',limited('register_otp',5,900),wrap((req,res)=>auth.sendRegisterOTP(req,res)));
@@ -88,7 +88,8 @@ app.post('/api/market/owner/categories',limited('market_mod',40,3600),wrap(marke
 app.use('/assets',express.static(path.join(root,'assets'),{maxAge:'7d',immutable:false}));
 app.get('/dashboard',(req,res)=>res.sendFile(path.join(root,'dashboard.html')));
 app.get('/app',(req,res)=>res.redirect(302,'/dashboard#account'));
-app.get(['/', '/login','/register','/forgot-password'],(req,res)=>res.sendFile(path.join(root,'index.html')));
+app.get('/',(req,res)=>res.sendFile(path.join(root,'dashboard.html')));
+app.get(['/login','/register','/forgot-password'],(req,res)=>res.sendFile(path.join(root,'index.html')));
 app.use('/api',(req,res)=>res.status(404).json({ok:false,error:{code:'NOT_FOUND',message:'NOT_FOUND'}}));
 app.use((error,req,res,next)=>{
  const code=error instanceof AppError?error.code:error.message==='SERVER_NOT_CONFIGURED'?'SERVER_NOT_CONFIGURED':error.message==='WEAK_SERVER_SECRET'?'SERVER_NOT_CONFIGURED':error.status===503?'DATABASE_ERROR':error.type==='entity.parse.failed'?'INVALID_JSON':'INTERNAL_ERROR';

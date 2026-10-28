@@ -42,6 +42,6 @@ test('Figma-authored asset uses a cropped viewport while retaining original sour
  assert.match(original,/viewBox="0 0 760 900"/);
  assert.match(svg,/viewBox="305 470 485 440"/);
  assert.match(svg,/@keyframes kf_/);
- assert.match(html,/v30-legibility\.css/);
+ assert.match(html,/auth\.css/);
  assert.match(read('../public/assets/css/v30-legibility.css'),/pointer-events:none/);
 });

@@ -32,8 +32,8 @@ test('destructive actions use custom confirmation dialogs',()=>{
 test('desktop and mobile styles and reduced motion assets are loaded',()=>{
   assert.match(css,/@media\(max-width:760px\)/);
   assert.match(css,/prefers-reduced-motion:reduce/);
-  assert.match(html,/assets\/dashboard\/ui-v48\.css/);
+  assert.match(html,/assets\/dashboard\/commerce\.css/);
   assert.match(html,/assets\/dashboard\/ui-v48\.js/);
-  assert.match(auth,/assets\/css\/auth-v48\.css/);
+  assert.match(auth,/assets\/css\/auth\.css/);
   assert.match(auth,/assets\/js\/ui\/auth-v48\.js/);
 });

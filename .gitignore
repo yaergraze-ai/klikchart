@@ -8,3 +8,8 @@ playwright-report/
 test-results/
 .DS_Store
 qa-previews/
+
+qa-*.txt
+qa-home-*.png
+baseline-tests.txt
+preview/

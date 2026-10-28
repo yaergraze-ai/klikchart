@@ -10,7 +10,7 @@ const motion=read('../public/assets/js/ui/motion.js');
 test('Redundant image + welcome thumbnail are absent from real HTML',()=>{
  assert.doesNotMatch(html,/class="project-chip"/);
  assert.doesNotMatch(html,/class="chip-art"/);
- assert.match(html,/v20-polish\.css/);
+ assert.match(html,/auth\.css/);
 });
 test('Hero typography no longer reacts to pointer position',()=>{
  assert.doesNotMatch(app,/setupParallax\(\)/);

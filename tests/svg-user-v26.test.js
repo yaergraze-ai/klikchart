@@ -24,5 +24,5 @@ test('SVG art cannot intercept clicks or cause page layout scroll',()=>{
  assert.match(css,/pointer-events:none/);
  assert.match(css,/max-width:760px/);
  assert.match(css,/body\.klc-mobile-focus \.klc-motion-art/);
- assert.ok(html.lastIndexOf('v26-user-svg.css')>html.lastIndexOf('v25-frame-spacing.css'));
+ assert.equal((html.match(/href="\/assets\/css\/auth\.css/g)||[]).length,1);
 });

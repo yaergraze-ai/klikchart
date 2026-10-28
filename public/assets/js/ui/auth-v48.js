@@ -9,5 +9,6 @@ document.addEventListener('pointerdown',event=>{
  dot.style.setProperty('--x',(event.clientX-r.left)+'px');dot.style.setProperty('--y',(event.clientY-r.top)+'px');
  dot.style.setProperty('--scale',String(Math.ceil(Math.max(r.width,r.height)/6)+7));
  el.classList.add('kc-auth-ripple-host');el.appendChild(dot);
- dot.addEventListener('animationend',()=>dot.remove(),{once:true});
+ setTimeout(()=>dot.remove(),600);
+  dot.addEventListener('animationend',()=>dot.remove(),{once:true});
 },{passive:true});

@@ -6,7 +6,7 @@ const html=file('public/dashboard.html');
 const css=file('public/assets/dashboard/ui-v49.css');
 const js=file('public/assets/dashboard/ui-v49.js');
 test('responsive v4.9 styles and table labelling scripts are included',()=>{
- assert.match(html,/\/assets\/dashboard\/ui-v49\.css/);
+ assert.match(html,/\/assets\/dashboard\/commerce\.css/);
  assert.match(html,/\/assets\/dashboard\/ui-v49\.js/);
  assert.match(js,/MutationObserver/);
  assert.match(js,/data-column-label/);

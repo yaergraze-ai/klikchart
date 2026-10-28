@@ -104,7 +104,7 @@ export async function cartChange(req){const user=await account(req);const produc
  if(!p||p.status!=='published'||p.market_shops?.status!=='active')throw new AppError('PRODUCT_UNAVAILABLE',409);
  ensure(p.market_shops.owner_id!==user.id,'OWN_PRODUCT',409);ensure(quantity<=p.stock,'OUT_OF_STOCK',409);
  await rows(db().from('market_cart_items').upsert({user_id:user.id,product_id:productId,quantity,updated_at:new Date().toISOString()},{onConflict:'user_id,product_id'}));return {saved:true};}
-export async function wishlist(req){const user=await account(req);return {items:await rows(db().from('market_wishlists').select('product_id,market_products(id,name,price,image_url,stock,status)').eq('user_id',user.id))};}
+export async function wishlist(req){const user=await account(req);return {items:await rows(db().from('market_wishlists').select('product_id,market_products(id,name,price,image_url,stock,status,market_shops(name,status))').eq('user_id',user.id))};}
 export async function wishlistChange(req){const user=await account(req);ensure(uuid(req.body?.productId),'PRODUCT_INVALID');if(req.body?.saved===false){await rows(db().from('market_wishlists').delete().eq('user_id',user.id).eq('product_id',req.body.productId));return {saved:false};}
  const p=await single(db().from('market_products').select('id').eq('id',req.body.productId).eq('status','published'));ensure(!!p,'NOT_FOUND',404);
  await rows(db().from('market_wishlists').upsert({user_id:user.id,product_id:req.body.productId},{onConflict:'user_id,product_id'}));return {saved:true};}
