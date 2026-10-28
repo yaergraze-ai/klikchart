@@ -29,6 +29,7 @@ icons.search='<circle cx="11" cy="11" r="7"/><path d="m16.3 16.3 4.4 4.4"/>';
 icons.logout='<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/>';
 icons.menu='<path d="M4 6h16M4 12h16M4 18h16"/>';
 icons.sparkle='<path d="m12 2 2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z"/>';
+icons.shield='<path d="m12 2 8 4v6c0 6-4 9-8 10-4-1-8-4-8-10V6z"/><path d="m8 12 3 3 5-5"/>';
 icons.package='<path d="m3 7 9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/>';
 icons.eye='<path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>';
 const ico=key=>`<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[key]||icons.home}</svg>`;
@@ -116,7 +117,7 @@ function storefrontToolbar(){return `<section class="store-categories" aria-labe
 function storeProducts(){const {items=[],total=0,page=1}=S.data.products||{};return `<div class="store-list-heading"><div><span class="eyebrow">PILIHAN DARI TOKO TERVERIFIKASI</span><h2>${S.view==='shop'?'Katalog toko':'Rekomendasi untukmu'}</h2><p>${total} produk ditemukan</p></div></div>
  <div class="catalog-toolbar"><select class="control" id="cat-filter" aria-label="Kategori"><option value="">Semua kategori</option>${S.categories.map(c=>`<option value="${c.id}" ${String(S.category)===String(c.id)?'selected':''}>${E(c.name)}</option>`).join('')}</select><input class="control price-limit" inputmode="numeric" type="number" min="0" id="min-price" placeholder="Harga minimum" aria-label="Harga minimum" value="${E(S.minPrice)}"><input class="control price-limit" inputmode="numeric" type="number" min="0" id="max-price" placeholder="Harga maksimum" aria-label="Harga maksimum" value="${E(S.maxPrice)}"><select id="sort-filter" class="control" aria-label="Urutan"><option value="new" ${S.sort==='new'?'selected':''}>Terbaru</option><option value="price_asc" ${S.sort==='price_asc'?'selected':''}>Harga terendah</option><option value="price_desc" ${S.sort==='price_desc'?'selected':''}>Harga tertinggi</option><option value="name" ${S.sort==='name'?'selected':''}>Nama A–Z</option></select>${btn('Terapkan harga','apply-price','small')}</div>
  ${items.length?`<div class="product-grid storefront-grid">${items.map(productCard).join('')}</div><div class="tools store-pagination">${page>1?btn('← Sebelumnya','prev'):''}<span class="hint">Halaman ${page} dari ${Math.max(1,Math.ceil(total/16))}</span>${page*16<total?btn('Berikutnya →','next'):''}</div>`:empty('Belum ada produk yang sesuai','Ubah filter atau jelajahi kategori lainnya.')}`;}
-function home(){return `<section class="store-hero"><div class="store-hero-copy"><span class="hero-kicker">${ico("sparkle")} TEMUKAN PILIHAN TERBAIKMU</span><h1>Belanja lebih mudah.<br><em>Pilihan lebih beragam.</em></h1><p>${E(S.site?.announcement||'Produk pilihan dari penjual yang sudah disetujui Klikchart. Cari kebutuhanmu dalam satu tempat.')}</p><div class="hero-cta">${btn('Jelajahi produk','scroll-products','primary')}${isLogged()?btn('Lihat pesanan','go:orders','soft'):`<a class="btn soft" href="/register">Daftar sekarang</a>`}</div><span class="hero-trust">✓ Toko terverifikasi &nbsp; • &nbsp; 📦 Pengiriman COD internal</span></div><div class="hero-decor" aria-hidden="true"><div class="orb-one"></div><div class="orb-two"></div><div class="hero-bag">${logo}</div><span class="hero-tag">${ico("sparkle")} BELANJA</span><span class="hero-spark">${ico("sparkle")}</span></div></section>
+function home(){return `<section class="store-hero"><div class="store-hero-copy"><span class="hero-kicker">${ico("sparkle")} TEMUKAN PILIHAN TERBAIKMU</span><h1>Belanja lebih mudah.<br><em>Pilihan lebih beragam.</em></h1><p>${E(S.site?.announcement||'Produk pilihan dari penjual yang sudah disetujui Klikchart. Cari kebutuhanmu dalam satu tempat.')}</p><div class="hero-cta">${btn('Jelajahi produk','scroll-products','primary')}${isLogged()?btn('Lihat pesanan','go:orders','soft'):`<a class="btn soft" href="/register">Daftar sekarang</a>`}</div><span class="hero-trust">${ico("shield")} Toko terverifikasi &nbsp; · &nbsp; ${ico("package")} COD internal</span></div><div class="hero-decor" aria-hidden="true"><div class="orb-one"></div><div class="orb-two"></div><div class="hero-bag">${logo}</div><span class="hero-tag">${ico("sparkle")} BELANJA</span><span class="hero-spark">${ico("sparkle")}</span></div></section>
  <section class="store-benefits"><span>${ico("sparkle")} <b>Marketplace terkurasi</b><small>Penjual ditinjau pengelola</small></span><span>${ico("wishlist")} <b>Simpan favorit</b><small>Temukan kembali pilihanmu</small></span><span>${ico("package")} <b>Riwayat pesanan</b><small>Pantau proses pengiriman</small></span></section>
  ${storefrontToolbar()}<div id="products-section">${storeProducts()}</div>`;}
 function shop(){const x=S.data.shop?.shop;if(!x)return empty('Toko tidak ditemukan');return `<div class="shop-page-head"><span class="shop-avatar">${ico("sellerShop")}</span><div><span class="eyebrow">TOKO TERVERIFIKASI</span><h1>${E(x.name)}</h1><p>${E(x.description||'Toko mitra Klikchart.')} · Bergabung ${fmt(x.created_at)}</p></div>${btn('Semua toko','go:home','soft')}</div>${storeProducts()}`;}
@@ -192,10 +193,10 @@ function openAddress(a={}){
  S.editAddressId=a.id||null;
  formDialog(a.id?'Edit alamat pengiriman':'Tambah alamat pengiriman',a.id?'address-edit':'address-add',[
  ['recipient','Nama lengkap penerima','text',a.recipient||'',true],
- ['phone','Nomor telepon penerima','text',a.phone||'',true],
- ['province','Provinsi','text',a.province||'',true],
- ['city','Kota / Kabupaten','text',a.city||'',true],
- ['postalCode','Kode pos','text',a.postal_code||'',true],
+ ['phone','Nomor telepon penerima','text',a.phone||'',false],
+ ['province','Provinsi','text',a.province||'',false],
+ ['city','Kota / Kabupaten','text',a.city||'',false],
+ ['postalCode','Kode pos','text',a.postal_code||'',false],
  ['address','Alamat lengkap','textarea',a.address||'',true]
  ],a.id?'Simpan perubahan':'Simpan alamat');
  const form=document.getElementById('dialog-form');if(!form)return;
