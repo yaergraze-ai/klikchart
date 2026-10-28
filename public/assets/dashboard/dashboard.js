@@ -113,7 +113,7 @@ async function confirmAction(title,description,{confirmLabel='Konfirmasi',fieldL
       const field=modal.querySelector('#kc-confirm-note');
       if(field && required && !field.value.trim()){field.setCustomValidity('Kolom ini wajib diisi.');field.reportValidity();field.addEventListener('input',()=>field.setCustomValidity(''),{once:true});return}
       const value={note:field?.value.trim()||''};
-      closeDialog();settle(value);
+      settle(value);closeDialog();
     });
     modal.querySelector('#kc-confirm-accept')?.focus({preventScroll:true});
   });
