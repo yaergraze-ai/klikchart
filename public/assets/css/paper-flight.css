@@ -1,0 +1,10 @@
+/* v3.5 — aircraft trail and absorbing logo. Layout never moves. */
+#paper-flight-layer{position:fixed;inset:0;z-index:20;pointer-events:none;overflow:hidden;contain:layout paint;opacity:1;will-change:opacity}#paper-flight-layer svg{display:block;width:100%;height:100%;overflow:visible}.klc-paper-plane{filter:drop-shadow(0 0 10px rgba(230,184,255,.8))}.klc-flight-trail{fill:none;stroke:#e2bcff;stroke-width:2.8;stroke-linecap:round;filter:drop-shadow(0 0 3px rgba(204,151,241,.48))}.klc-impact-glow{fill:#e7c3ff;opacity:0;filter:drop-shadow(0 0 12px #d2a6ff)}
+/* Reaction affects ONLY the icon within the header: the wordmark stays put. */
+.brand svg{transform-origin:50% 55%;transform-box:fill-box}.brand.klc-logo-impact svg{animation:klc-logo-absorb .7s cubic-bezier(.22,1,.36,1) both}.brand.klc-logo-impact span{animation:klc-logo-word-glint .75s ease-out both}
+@keyframes klc-logo-absorb{0%{transform:scale(1) rotate(0);filter:drop-shadow(0 0 0 transparent)}22%{transform:scale(.78) rotate(-9deg);filter:drop-shadow(0 0 12px #e5c1ff)}49%{transform:scale(1.26) rotate(6deg);filter:drop-shadow(0 0 18px #e2b9ff)}72%{transform:scale(.96) rotate(-2deg)}100%{transform:scale(1) rotate(0);filter:none}}
+@keyframes klc-logo-word-glint{0%,100%{filter:brightness(1)}45%{filter:brightness(1.6) drop-shadow(0 0 9px rgba(235,192,255,.65))}}
+@media(prefers-reduced-motion:reduce){#paper-flight-layer{display:none!important}.brand.klc-logo-impact svg,.brand.klc-logo-impact span{animation:none!important}}
+
+/* Missing OTP provider shown without suggesting it is clickable. */
+.method-card:disabled{opacity:.45;cursor:not-allowed;background:#191327aa;border-style:dashed}.method-card:disabled small{opacity:.9}.method-card:disabled:hover{background:#191327aa;border-color:#b59acc69}

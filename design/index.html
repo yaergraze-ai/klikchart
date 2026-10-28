@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111019"><meta name="description" content="Lucy — ruang untuk imajinasi, ide, dan kemungkinan baru.">
+  <title>Lucy — Where ideas begin.</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23151320'/%3E%3Cpath d='M32 5 36 27 59 32 36 37 32 59 27 37 5 32 27 27Z' fill='%23c9b0f7'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"><script src="app.js" defer></script>
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg"><symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol><symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></symbol><symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 4v3"/></symbol><symbol id="spark" viewBox="0 0 64 64"><path d="M32 0 36 27 64 32 36 37 32 64 27 37 0 32 27 27Z" fill="currentColor" stroke="none"/><path d="m14 14 18 14 18-14-14 18 14 18-18-14-18 14 14-18Z" fill="currentColor" stroke="none" opacity=".45"/></symbol></svg>
+  <div class="scene" aria-hidden="true"></div><div class="page-frame" aria-hidden="true"></div>
+  <header class="header">
+    <a class="brand" href="./" aria-label="Lucy beranda"><svg><use href="#spark"/></svg><span>lucy<sup>™</sup></span></a>
+    <nav aria-label="Navigasi utama"><button data-dialog="about">Tentang Lucy</button><button data-dialog="explore">Eksplorasi <span>↗</span></button></nav>
+    <div class="header-caption"><span>INNOVATION STARTS HERE</span><span class="status-dot"></span></div>
+  </header>
+  <main class="main">
+    <section class="intro" aria-labelledby="hero-title">
+      <div class="eyebrow"><span class="tiny-star">✦</span> A SPACE FOR YOUR NEXT BIG IDEA</div>
+      <div class="hero-type"><h1 id="hero-title">Beyond<br><em>ordinary.</em></h1><svg class="hero-star" aria-hidden="true"><use href="#spark"/></svg><div class="orbit" aria-hidden="true"></div></div>
+      <div class="intro-bottom"><span class="index">01 /</span><div><p>Ide besar dimulai dari rasa ingin tahu.<br>Temukan ruang untuk mewujudkan milikmu.</p><button class="text-link" data-dialog="expect">Kenali kemungkinanmu <span>↗</span></button></div></div>
+      <div class="project-chip"><div class="chip-art" aria-hidden="true"></div><div><span>MEET YOUR CREATIVE SPACE</span><strong>LUCYideas™ <span>↗</span></strong></div><span class="chip-divider"></span><span class="chip-number">IMAGINE.<br>CREATE.<br>EVOLVE.</span></div>
+    </section>
+    <section class="auth-card" aria-labelledby="form-title">
+      <div class="card-top"><span class="eyebrow">YOUR NEXT CHAPTER</span><span class="card-symbol">✳</span></div>
+      <div id="auth-content">
+        <h2 id="form-title">Welcome back<span>.</span></h2><p id="form-subtitle" class="form-subtitle">Masuk dan biarkan ide-idemu berkembang.</p>
+        <form id="auth-form">
+          <div class="field" id="name-field" hidden><label for="name">Nama lengkap</label><div class="input-wrap"><input id="name" name="name" placeholder="Nama kamu" autocomplete="name" maxlength="80"></div></div>
+          <div class="field"><label for="email">Alamat email</label><div class="input-wrap"><input id="email" name="email" type="email" placeholder="nama@email.com" autocomplete="email" required maxlength="254"><svg aria-hidden="true"><use href="#mail"/></svg></div></div>
+          <div class="field" id="password-field"><label for="password">Kata sandi</label><div class="input-wrap"><input id="password" name="password" type="password" placeholder="Minimal 8 karakter" autocomplete="current-password" minlength="8" required><button id="toggle-password" type="button" aria-label="Tampilkan kata sandi" aria-pressed="false"><svg><use href="#eye"/></svg></button></div></div>
+          <div class="form-options" id="form-options"><label class="check-label"><input type="checkbox" id="remember"> Ingat email saya</label><button type="button" id="forgot">Lupa kata sandi?</button></div>
+          <p class="form-feedback" id="form-feedback" role="status" hidden></p>
+          <button class="primary-button" id="submit-button" type="submit"><span>Masuk</span><svg><use href="#arrow"/></svg></button>
+        </form>
+        <div class="separator"><span>kemungkinan baru menantimu</span></div>
+        <div class="signup"><span id="switch-caption">Belum punya akun?</span><button id="switch-mode">Daftar sekarang <span>↗</span></button></div>
+      </div>
+      <div class="card-foot"><svg aria-hidden="true"><use href="#lock"/></svg><span>Mode demo · tanpa menyimpan kata sandi</span></div>
+    </section>
+  </main>
+  <footer class="footer"><span>© 2026 LUCY™</span><span class="footer-motto">A LITTLE CURIOSITY. ENDLESS POSSIBILITIES.</span><div><button data-dialog="privacy">Privasi</button><span class="footer-dot">·</span><button data-dialog="help">Bantuan <span>↗</span></button></div></footer>
+  <dialog id="info-dialog"><button class="close-dialog" aria-label="Tutup dialog">×</button><span class="eyebrow">THE LUCY UNIVERSE</span><div id="dialog-content"></div><button class="primary-button dialog-done">Mengerti <span>↗</span></button></dialog>
+</body>
+</html>

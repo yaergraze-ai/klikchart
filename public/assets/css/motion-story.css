@@ -1,0 +1,82 @@
+/* Klikchart v1.9 — motion study based on supplied Figma prototype (3:412).
+   Sequence follows its brand > kicker > headlines > copy > shopping accent.
+   One-time reveal is deliberately NOT looped: avoid flashing usable content.
+   Long-running motion affects only decorative SVG layers. */
+:root { --klc-story-ease:cubic-bezier(.22,1,.36,1); }
+.klc-story-silk {
+  position:absolute;inset:-23% -12% -22% -10%;width:122%;height:145%;
+  overflow:visible;pointer-events:none;z-index:0;opacity:.55;
+}
+.klc-silk-sweep{stroke-dasharray:750;stroke-dashoffset:750;opacity:.52;}
+.klc-motion-on .klc-silk-sweep-a {animation:klc-silk-trace 2.2s .33s ease-out forwards,klc-silk-drift 14s 2.55s ease-in-out infinite alternate;}
+.klc-motion-on .klc-silk-sweep-b {animation:klc-silk-trace 2.5s .52s ease-out forwards,klc-silk-drift 18s 3s ease-in-out infinite alternate-reverse;}
+@keyframes klc-silk-trace {to{stroke-dashoffset:0;opacity:.6}}
+@keyframes klc-silk-drift {from{transform:translate3d(-6px,0,0);opacity:.35}to{transform:translate3d(10px,-9px,0);opacity:.62}}
+/* Motion choreography derived from the source prototype's stagger and directions. */
+.klc-motion-on .brand {animation:klc-story-left .7s .07s var(--klc-story-ease) both;}
+.klc-motion-on .header nav,.klc-motion-on .header-caption {animation:klc-story-right .7s .18s var(--klc-story-ease) both;}
+.klc-motion-on .intro>.eyebrow {animation:klc-story-right .67s .31s var(--klc-story-ease) both;}
+.klc-motion-on .hero-line:first-child {animation:klc-story-left .78s .54s var(--klc-story-ease) both;}
+.klc-motion-on .hero-line:last-child {
+  animation:klc-story-right .8s .75s var(--klc-story-ease) both,
+            klc-type-spectrum 12s 1.5s ease-in-out infinite alternate;
+}
+.klc-motion-on .intro-bottom {animation:klc-story-left .78s .96s var(--klc-story-ease) both;}
+.klc-motion-on .auth-card {animation:klc-story-card .72s .34s var(--klc-story-ease) both;}
+.klc-motion-on .footer{animation:klc-story-up .64s 1s var(--klc-story-ease) both;}
+@keyframes klc-story-left {from{opacity:0;transform:translate3d(-36px,0,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes klc-story-right {from{opacity:0;transform:translate3d(36px,0,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes klc-story-up {from{opacity:0;transform:translate3d(0,12px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes klc-story-card {from{opacity:0;transform:translate3d(0,20px,0) scale(.985)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+/* The storefront is an authored SVG illustration, not a raster/video overlay. */
+.hero-bag{width:105px;height:105px;border-radius:26px;bottom:4px;right:-1%;background:linear-gradient(140deg,rgba(138,86,182,.3),rgba(36,22,56,.59));}
+.hero-bag-svg.klc-store-svg{width:89px;height:94px;overflow:visible;}
+.klc-store-awning {transform-origin:56px 38px;animation:klc-store-greet 5.5s 1.4s ease-in-out infinite;}
+.klc-store-bag {transform-origin:56px 86px;animation:klc-store-wiggle 5.5s 1.4s ease-in-out infinite;}
+.klc-store-twinkle {transform-origin:center;transform-box:fill-box;animation:klc-store-glint 3.7s -1s ease-in-out infinite;}
+.klc-store-twinkle-alt{animation-delay:-2.2s;}
+@keyframes klc-store-greet{0%,55%,100%{transform:translateY(0)}64%{transform:translateY(-3px)}78%{transform:translateY(1px)}}
+@keyframes klc-store-wiggle{0%,55%,100%{transform:rotate(0)}65%{transform:rotate(-6deg)}76%{transform:rotate(4deg)}}
+@keyframes klc-store-glint{0%,100%{transform:scale(.7) rotate(-12deg);opacity:.4}50%{transform:scale(1.2) rotate(16deg);opacity:1}}
+/* Delay the shopping accent's initial reveal just like the Figma accent layer.
+   Inner SVG parts remain animated after the accent has settled. */
+.klc-motion-on .hero-bag {animation:klc-story-shop .86s .83s var(--klc-story-ease) both,klc-bag-float 7.2s 1.8s ease-in-out infinite;}
+@keyframes klc-story-shop{from{opacity:0;transform:translate3d(43px,-22px,0) rotate(-6deg) scale(.92)}to{opacity:1;transform:translate3d(0,0,0) rotate(0) scale(1)}}
+/* Fast form switches: each field gently fades in, while navigation remains instant. */
+.klc-view-enter h2 {animation:klc-field-arrive .26s ease-out both;}
+.klc-view-enter .form-subtitle {animation:klc-field-arrive .28s .02s ease-out both;}
+.klc-view-enter .field {animation:klc-field-arrive .24s ease-out both;}
+.klc-view-enter .field:nth-of-type(2){animation-delay:.035s;}
+.klc-view-enter .field:nth-of-type(3){animation-delay:.065s;}
+.klc-view-enter .primary-button {animation:klc-field-arrive .25s .06s ease-out both;}
+@keyframes klc-field-arrive{from{opacity:.55;transform:translate3d(0,5px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+/* Discrete mobile treatments; all decorations are absolute, no layout impact. */
+@media(max-width:1280px) and (min-width:761px){.hero-bag{width:73px;height:73px;border-radius:20px;right:0;bottom:0;}.hero-bag-svg.klc-store-svg{width:61px;height:64px;}}
+@media(max-width:760px){
+ .klc-story-silk {inset:-22% -6% -25% -6%;width:112%;height:147%;opacity:.32;}
+ .klc-motion-on .hero-line:first-child {animation:klc-story-left .54s .28s var(--klc-story-ease) both;}
+ .klc-motion-on .hero-line:last-child {animation:klc-story-right .57s .4s var(--klc-story-ease) both,klc-type-spectrum 12s .9s ease-in-out infinite alternate;}
+ .klc-motion-on .intro>.eyebrow{animation-duration:.53s;animation-delay:.18s;}
+ .klc-motion-on .auth-card{animation:klc-story-up .48s .13s var(--klc-story-ease) both;}
+ .klc-motion-on .intro-bottom{animation-duration:.5s;animation-delay:.48s;}
+ .klc-motion-on .brand{animation-duration:.48s;}
+ .hero-bag{display:none;}
+}
+@media(max-width:760px) and (min-height:750px) and (min-width:381px){
+ /* Mini storefront tucked into free hero margin on tall phones only. */
+ .hero-bag {display:grid;width:46px;height:46px;top:3px;bottom:auto;right:0;border-radius:13px;opacity:.65;box-shadow:0 4px 17px #8d59b455;}
+ .hero-bag-svg.klc-store-svg{width:41px;height:43px;}
+ .hero-bag-glint{display:none;}
+ body[data-auth-layout="dense"] .hero-bag {display:none;}
+}
+@media(max-width:760px) and (max-height:650px){.klc-story-silk{display:none}.hero-bag{display:none}}
+@media(prefers-reduced-motion:reduce){
+ .klc-story-silk,.klc-motion-on .brand,.klc-motion-on .header nav,.klc-motion-on .header-caption,
+ .klc-motion-on .intro>.eyebrow,.klc-motion-on .hero-line:first-child,.klc-motion-on .hero-line:last-child,
+ .klc-motion-on .intro-bottom,.klc-motion-on .auth-card,
+ .klc-motion-on .footer,.klc-motion-on .hero-bag,.klc-view-enter * ,
+ .klc-store-awning,.klc-store-bag,.klc-store-twinkle,.klc-silk-sweep{animation:none!important;}
+ .klc-silk-sweep{stroke-dashoffset:0;opacity:.45;}
+}
+.klc-motion-paused .klc-silk-sweep,.klc-motion-paused .klc-store-awning,
+.klc-motion-paused .klc-store-bag,.klc-motion-paused .klc-store-twinkle{animation-play-state:paused!important;}

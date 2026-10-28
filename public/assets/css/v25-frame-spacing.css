@@ -1,0 +1,52 @@
+/* Klikchart v2.5 — Header/footer breathing room, matching the user's marked preview.
+ * Loaded last so prior responsive variants cannot bring the labels back against
+ * the surrounding page frame. No offsets on text, form inputs, or illustration. */
+@media (min-width: 761px) {
+  /* The 3-column layout keeps left / center / right geometrically aligned. */
+  .header {
+    height: clamp(92px, 11.5dvh, 116px);
+    padding-block: 8px 0;
+    box-sizing: border-box;
+    grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+    align-items: center;
+  }
+  .header > .brand, .header > nav, .header > .header-caption {
+    align-self: center;
+    min-width: 0;
+  }
+  .header > nav { justify-self: center; margin: 0 !important; }
+  .header > .header-caption { justify-self: end; }
+
+  .footer {
+    height: clamp(69px, 9dvh, 86px);
+    padding-block: 0 10px;
+    box-sizing: border-box;
+    grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+    align-items: center;
+  }
+  .footer > span:first-child { justify-self: start; }
+  .footer > .footer-motto { justify-self: center; margin: 0 !important; }
+  .footer > div { justify-self: end; }
+  .footer > div button { min-height: 34px; padding-block: 6px; }
+}
+
+/* Narrow vertical laptop space: leave enough height for full OTP/register forms. */
+@media (min-width: 761px) and (max-height: 820px) {
+  .header { height: clamp(71px, 10dvh, 84px); padding-top: 5px; }
+  .footer { height: clamp(62px, 8.8dvh, 72px); padding-bottom: 8px; }
+  .main { padding-block: 4px; }
+}
+@media (min-width: 761px) and (max-height: 730px) {
+  .header { height: 67px; padding-top: 3px; }
+  .footer { height: 61px; padding-bottom: 7px; }
+}
+
+/* Small phone: do not trade input visibility for decorative breathing room. */
+@media (max-width: 760px) {
+  .footer { height: 44px; padding-bottom: 6px; }
+  .footer > div button { min-height: 28px; padding-block: 4px; }
+}
+@media (max-width: 760px) and (min-height: 780px) {
+  .header { height: clamp(60px, 7.7dvh, 68px); padding-block: 3px 0; }
+  .footer { height: 52px; padding-bottom: 9px; }
+}

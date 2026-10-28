@@ -1,0 +1,45 @@
+/* v3.0 — Figma fidelity and legibility. One final layout source for the illustration.
+   Artwork uses the original user's Figma shape paths and keyframes, not a recreation. */
+.klc-motion-art {
+  position:absolute;z-index:2;pointer-events:none;user-select:none;
+  width:clamp(395px,33vw,485px);aspect-ratio:485 / 440;
+  right:-183px;top:calc(35% - 40px);opacity:1;
+  overflow:visible;isolation:isolate;transform:none!important;
+}
+.klc-motion-art__image {
+  display:block;width:100%;height:100%;object-fit:contain;
+  filter:brightness(1.35) contrast(1.15) drop-shadow(0 5px 15px rgba(178,114,239,.24));
+  image-rendering:auto;
+}
+/* Copy is readable and higher priority than motion. */
+.intro>.eyebrow,.intro .hero-type,.intro .intro-bottom { position:relative;z-index:4; }
+.intro>.eyebrow{color:#f0e2f7;font-size:12px;letter-spacing:.11em;}
+.hero-type h1 .hero-line:first-child{color:#fcf4ff;}
+.hero-type h1 .hero-line:last-child{color:#e8caf6;}
+.intro-bottom p{color:#f0e4f7;font-size:14px;line-height:1.65;max-width:39ch;}
+.intro-bottom .text-link{color:#f5e9ff;font-size:13px;font-weight:600;}
+.auth-card .card-top .eyebrow{color:#e8d5f4;font-weight:700;}
+.auth-card h2{color:#fff8ff;}
+.auth-card .form-subtitle{color:#e9d9f0;font-size:13px;}
+.auth-card .field label,.auth-card .field-label{color:#faf1ff;}
+.auth-card .input-wrap input{color:#fffaff;}
+.auth-card .input-wrap input::placeholder{color:#d2c1e1;opacity:1;}
+.auth-card .check-label,.auth-card .signup,.auth-card .card-foot{color:#e3d4ee;}
+.header nav a,.footer button{color:#f0e5f8;}
+.header-caption,.footer,.footer-motto{color:#e6d6f2;}
+@media(min-width:761px) and (max-width:1250px) {
+  .klc-motion-art {width:clamp(285px,29vw,360px);right:-75px;top:43%;}
+}
+@media(min-width:761px) and (max-width:1050px){.klc-motion-art{display:none;}}
+@media(min-width:761px) and (max-height:780px){.klc-motion-art{width:min(355px,28vw);right:-82px;top:45%;}}
+@media(min-width:761px) and (max-height:710px){.klc-motion-art{display:none;}}
+@media(max-width:760px){
+  .klc-motion-art{display:none;}
+  .intro>.eyebrow{font-size:10px;}
+  .intro-bottom p{font-size:12.3px;line-height:1.52;}
+  .auth-card .form-subtitle{font-size:12px;}
+}
+/* Figma labels need room to remain legible: never squeeze this intricate artwork
+   to a tiny mobile corner. Hide decoration instead of showing unreadable glyphs. */
+@media(max-width:760px){ .klc-motion-art{display:none!important;} }
+@media(prefers-reduced-motion:reduce){.klc-motion-art,.klc-motion-art *{animation:none!important;transition:none!important}}

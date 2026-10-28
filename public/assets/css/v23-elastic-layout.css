@@ -1,0 +1,466 @@
+/* Klikchart v2.1 — editorial typography and alignment refinement.
+   This stylesheet is intentionally last: it unifies the text rhythm after
+   historical responsive overrides without changing the authentication flow. */
+:root {
+  --klc-copy:#e4d8ed;
+  --klc-muted-copy:#d1c0dd;
+  --klc-reading-width:40ch;
+}
+/* Header: same horizontal rhythm as the content columns. */
+.header {align-items:center;}
+.header .brand{flex:none;line-height:1;}
+.header nav{display:flex;align-items:center;justify-content:center;}
+.header nav a{line-height:1.2;white-space:nowrap;}
+.header-caption{line-height:1.3;white-space:nowrap;}
+/* Hero: text is a stable left-aligned editorial block, ornaments behind it. */
+.intro {min-width:0; transform:none!important;translate:none!important;}
+.intro>.eyebrow {display:flex;align-items:center;gap:10px;line-height:1.45;letter-spacing:.13em;font-weight:600;color:#ded0eb;}
+.intro>.eyebrow .tiny-star {flex:none;line-height:1;font-size:15px;color:#d6b4f1;}
+.hero-type{width:100%;max-width:650px;margin-top:17px;}
+.hero-type h1{width:max-content;max-width:100%;margin:0;letter-spacing:-.045em;line-height:.98;font-size:clamp(57px,5.7vw,86px);font-weight:300;}
+.hero-type h1 .hero-line:first-child{display:block;white-space:nowrap;}
+.hero-type h1 .hero-line:last-child{display:block;width:max-content;max-width:100%;margin:6px 0 0 12px;font-size:clamp(39px,4.05vw,63px);letter-spacing:-.055em;line-height:1.12;white-space:nowrap;}
+.hero-type .klc-story-silk,.hero-type .aurora-orbit {z-index:0;opacity:.34;}
+.hero-type .hero-orbit-stage{opacity:.65;z-index:1;}
+.hero-type .hero-star{width:clamp(60px,6.2vw,92px);height:clamp(60px,6.2vw,92px);right:clamp(2px,1vw,14px);top:0;opacity:.84;}
+.hero-type h1{z-index:2;}
+/* Constrain copy separately so descriptions do not become extremely long lines. */
+.intro-bottom{display:flex;align-items:flex-start;gap:14px;margin:26px 0 0 2px;max-width:520px;}
+.intro-bottom .index{flex:0 0 auto;padding:3px 0 0;font-size:10px;line-height:1.5;letter-spacing:.09em;color:#bba8cb;}
+.intro-bottom>div{min-width:0;}
+.intro-bottom p{max-width:var(--klc-reading-width);margin:0;color:var(--klc-copy);font-size:14px;line-height:1.7;text-wrap:pretty;}
+.intro-bottom .text-link{display:inline-flex;align-items:center;gap:16px;margin-top:12px;padding:7px 0;font-size:12px;line-height:1.3;}
+.intro-bottom .text-link span:last-child{margin-left:0;}
+/* Form typography uses the same alignment and predictable, modest spacing. */
+.auth-card .card-top{align-items:center;gap:12px;}
+.card-top .eyebrow {font-size:10px;line-height:1.4;letter-spacing:.12em;color:#dccbe8;}
+.auth-card .auth-content{width:100%;min-width:0;}
+.auth-view {min-width:0;}
+.auth-card h2{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(34px,3.05vw,43px);
+  line-height:1.05;
+  letter-spacing:-.018em;
+  text-wrap:balance;
+  margin:16px 0 7px;
+  max-width:100%;
+}
+.auth-card .form-subtitle{color:#e0d1eb;font-size:12.5px;line-height:1.55;max-width:36ch;margin:0 0 18px;text-wrap:pretty;}
+.auth-card .field label,.auth-card .field-label{color:#f0e7f5;font-size:12.5px;line-height:1.4;font-weight:600;letter-spacing:.004em;}
+.auth-card .input-wrap input{font-family:'DM Sans',sans-serif;line-height:1.35;}
+.auth-card .input-wrap input::placeholder{color:#c5b5d4;opacity:1;text-overflow:ellipsis;}
+.auth-card .field-hint,.auth-card .field-error{line-height:1.35;}
+.auth-card .form-options{gap:12px;align-items:center;}
+.auth-card .check-label{line-height:1.4;}
+.auth-card .form-options button{text-align:right;line-height:1.4;}
+.auth-card .primary-button{display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;font-size:13.5px;letter-spacing:.005em;}
+.auth-card .separator{margin-block:13px 5px;}
+.auth-card .signup{display:flex;align-items:baseline;justify-content:center;gap:5px 9px;line-height:1.5;flex-wrap:wrap;text-align:center;}
+.auth-card .signup span,.auth-card .signup button{line-height:1.5;}
+.auth-card .card-foot{font-size:11px;line-height:1.4;text-align:center;}
+/* Medium/short desktop: keep the original viewport-first behavior. */
+@media(min-width:761px) and (max-height:820px){
+ .hero-type h1{font-size:clamp(53px,5.45vw,78px);}
+ .hero-type h1 .hero-line:last-child{font-size:clamp(35px,3.85vw,54px);margin-top:2px;}
+ .intro-bottom{margin-top:18px;}
+ .intro-bottom p{font-size:12.5px;line-height:1.55;}
+ .intro-bottom .text-link{margin-top:5px;}
+ .auth-card h2{font-size:clamp(30px,2.9vw,38px);margin:8px 0 5px;}
+ .auth-card .form-subtitle{font-size:12px;margin-bottom:10px;line-height:1.4;}
+ .auth-card .field label{font-size:12px;line-height:1.32;}
+ .auth-card .separator{margin-block:7px 2px;}
+ .auth-card .card-foot{font-size:10.5px;}
+}
+@media (min-width:761px) and (max-width:1050px){
+ .hero-type h1{font-size:clamp(45px,6.1vw,66px);}
+ .hero-type h1 .hero-line:last-child{font-size:clamp(30px,4.1vw,48px);margin-left:5px;}
+ .intro-bottom p{font-size:12.5px;line-height:1.6;}
+ .intro-bottom{gap:9px;}
+ .hero-type .hero-star{width:55px;height:55px;right:0;}
+}
+/* Portrait phones: correct hierarchy, prevent orphaned index / stretched text. */
+@media(max-width:760px){
+ .header .brand>span{letter-spacing:-.045em;}
+ .header nav{margin-left:auto;gap:13px;}
+ .header nav a{font-size:11px;}
+ .main .intro{width:100%;min-width:0;}
+ .intro>.eyebrow{font-size:10px;letter-spacing:.075em;line-height:1.45;gap:8px;}
+ .intro>.eyebrow .tiny-star{font-size:13px;}
+ .hero-type{width:100%;margin-top:7px;}
+ .hero-type h1{font-size:clamp(38px,10.35vw,48px);line-height:1;margin:0;letter-spacing:-.045em;}
+ .hero-type h1 .hero-line:last-child{margin:2px 0 0 2px;font-size:clamp(24px,6.6vw,31px);line-height:1.1;letter-spacing:-.05em;}
+ .hero-type .hero-star{width:35px;height:35px;right:clamp(30px,13vw,66px);top:0;}
+ .intro-bottom{display:flex;align-items:flex-start;gap:0;margin:10px 0 0 0;max-width:100%;}
+ .intro-bottom .index{display:none;}
+ .intro-bottom p{max-width:34ch;font-size:11.5px;line-height:1.45;letter-spacing:.002em;color:#d6c7e1;}
+ .intro-bottom .text-link{display:none;}
+ .auth-card h2{font-size:clamp(28px,7.55vw,34px);line-height:1.08;letter-spacing:-.013em;margin:11px 0 5px;}
+ .auth-card .form-subtitle{font-size:12px;line-height:1.48;margin:0 0 14px;max-width:100%;}
+ .auth-card .card-top .eyebrow{font-size:10px;letter-spacing:.095em;}
+ .auth-card .field label{font-size:12px;}
+ .auth-card .input-wrap input{font-size:15px;line-height:1.35;}
+ .auth-card .form-options{font-size:11px;}
+ .auth-card .primary-button{font-size:13px;}
+ .auth-card .separator{margin-block:9px 3px;}
+ .auth-card .signup{font-size:11px;gap:3px 6px;}
+ .auth-card .card-foot{font-size:10px;line-height:1.25;}
+ .footer{letter-spacing:.02em;}
+}
+@media(max-width:760px) and (max-height:700px){
+ .intro-bottom{display:none;}
+ .intro>.eyebrow{display:none;}
+ .hero-type{margin-top:0;}
+ .hero-type h1{font-size:clamp(30px,9.8vw,40px);}
+ .hero-type h1 .hero-line:last-child{font-size:clamp(20px,6.3vw,26px);}
+ .auth-card h2{font-size:clamp(26px,7.3vw,31px);margin:6px 0 4px;}
+ .auth-card .form-subtitle{font-size:11.5px;line-height:1.38;margin-bottom:8px;}
+ .auth-card .field label{font-size:11.5px;}
+ .auth-card .separator{margin-block:6px 2px;}
+ .auth-card .signup{font-size:10.5px;}
+ .hero-type .hero-star{width:25px;height:25px;right:clamp(20px,10vw,40px);}
+}
+@media(max-width:380px){
+ .header nav{gap:10px;}
+ .hero-type h1{font-size:clamp(32px,10vw,40px);}
+ .hero-type h1 .hero-line:last-child{font-size:clamp(21px,6.4vw,27px);}
+ .auth-card h2{font-size:clamp(26px,7.6vw,30px);}
+ .auth-card .field label{font-size:11.5px;}
+ .auth-card .input-wrap input{font-size:14px;}
+}
+@media(prefers-reduced-motion:reduce){.intro,.hero-type h1{transform:none!important;translate:none!important;}}
+/* Tablet portrait: reserve the whole central column for 3-field forms. */
+@media(min-width:761px) and (max-width:900px) and (orientation:portrait){
+  body[data-auth-stage="register-two"] .intro,
+  body[data-auth-stage="forgot-new"] .intro{display:none;}
+  body[data-auth-stage="register-two"] .main,
+  body[data-auth-stage="forgot-new"] .main{gap:0;}
+}
+
+/* Klikchart v2.2 — alignment system, not a collection of positional nudges.
+ * Header, main and footer share one container; artwork stays separate from copy.
+ * No transform/scroll/layout animations on working controls. */
+:root{--klc-content-width:1380px;--klc-side-gutter:clamp(20px,6vw,100px);--klc-soft-line:rgba(224,201,248,.19)}
+html,body{width:100%;height:100%;height:100dvh;overflow:hidden;overscroll-behavior:none}
+body{min-height:0;overflow:hidden}
+.header,.main,.footer{
+  width:min(calc(100% - 2 * var(--klc-side-gutter)),var(--klc-content-width));
+  max-width:var(--klc-content-width);margin-left:auto;margin-right:auto;
+}
+/* True three-column alignment: brand / nav / status remain on the same baseline. */
+.header{
+  display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:center;column-gap:30px;min-height:0;height:clamp(70px,9.2dvh,100px);
+  padding:0;border-bottom:1px solid var(--klc-soft-line);flex:0 0 auto;
+}
+.header .brand{justify-self:start;display:inline-flex;align-items:center;gap:11px;line-height:1;white-space:nowrap}
+.header .brand svg{width:32px;height:32px;flex:0 0 auto}
+.header .brand>span{font-size:clamp(24px,2vw,31px);font-weight:600;letter-spacing:-.055em;line-height:1.1}
+.header nav{justify-self:center;display:flex;align-items:center;gap:28px;margin:0!important;padding:0;white-space:nowrap}
+.header nav a{font-size:13px;line-height:1.2;min-height:44px;display:inline-flex;align-items:center;gap:7px;color:#e5d8ef;transition:color .2s ease}
+.header nav a span{margin:0}
+.header nav a[aria-current="page"]{color:#f5e8ff}
+.header nav a[aria-current="page"]::after{content:'';width:4px;height:4px;border-radius:50%;background:#ddc3f3;box-shadow:0 0 8px #cfaff7}
+.header nav a:hover{color:white}
+.header-caption{justify-self:end;min-width:0;display:inline-flex;align-items:center;gap:11px;color:#cfc0df;font-size:10px;letter-spacing:.13em;font-weight:600;line-height:1.5;text-align:right;white-space:nowrap}
+.header-caption .status-dot{width:6px;height:6px;flex:none}
+/* Keep the footer in the same three aligned columns as the header. */
+.footer{
+  flex:0 0 auto;min-height:0;height:clamp(45px,6.8dvh,62px);
+  padding:0;border-top:1px solid var(--klc-soft-line);
+  display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:center;column-gap:24px;letter-spacing:.075em;
+  font-size:10px;line-height:1.4;color:#c6b6d5;
+}
+.footer>span:first-child{justify-self:start;white-space:nowrap}
+.footer-motto{justify-self:center;margin:0!important;font-size:10px;letter-spacing:.13em;color:#d6c5e1;white-space:nowrap}
+.footer>div{justify-self:end;display:flex;align-items:center;gap:20px;white-space:nowrap}
+.footer button{font-size:12px;color:#d9cae5;line-height:1.3;min-height:38px;padding:8px 0;letter-spacing:0}
+.footer-dot{opacity:.55}
+/* Reserve a predictable area for the editorial hero and a separate auth column. */
+.main{
+  display:grid;grid-template-columns:minmax(0,1.2fr) minmax(380px,.9fr);
+  align-items:center;column-gap:clamp(58px,8vw,128px);
+  min-height:0;flex:1 1 auto;padding:12px 0;overflow:hidden;
+}
+.main .intro{position:relative;isolation:isolate;min-width:0;max-width:100%;align-self:center;
+  transform:none!important;translate:none!important}
+.intro>.eyebrow{margin:0;min-height:21px;gap:9px;font-size:11px;letter-spacing:.12em;color:#d8c7e9;line-height:1.4}
+.intro>.eyebrow .tiny-star{font-size:14px}
+.hero-type{position:relative;isolation:isolate;width:100%;max-width:630px;margin:15px 0 0;min-width:0}
+.hero-type h1{position:relative;z-index:3;width:100%;font-size:clamp(59px,5.7vw,85px);line-height:.98;letter-spacing:-.045em;margin:0}
+.hero-type h1 .hero-line:first-child{font-size:inherit;line-height:1.02;max-width:100%;white-space:nowrap}
+.hero-type h1 .hero-line:last-child{font-size:clamp(39px,3.95vw,60px);line-height:1.11;white-space:nowrap;letter-spacing:-.054em;margin:4px 0 0 7px}
+/* Decorative SVGs are never placed on top of the letterforms. */
+.hero-type .klc-story-silk,.hero-type .aurora-orbit{opacity:.12;pointer-events:none;z-index:0}
+.hero-type .orbit{opacity:.17;right:-7%;top:-28px;width:190px;height:190px;pointer-events:none}
+.hero-type .hero-orbit-stage{opacity:.42;pointer-events:none;z-index:0;inset:-13px 0 -10px -10px}
+.hero-type .hero-star{z-index:1;width:clamp(43px,4.8vw,70px);height:clamp(43px,4.8vw,70px);right:-24px;top:-20px;opacity:.82;pointer-events:none}
+.intro-bottom{position:relative;z-index:3;margin:28px 0 0!important;gap:0;max-width:460px;align-items:flex-start}
+.intro-bottom .index{display:none}
+.intro-bottom>div{width:100%;min-width:0}
+.intro-bottom p{max-width:42ch;font-size:14px;line-height:1.67;letter-spacing:0;color:#dfd1e9;text-wrap:pretty}
+.intro-bottom .text-link{display:inline-flex;align-items:center;justify-content:flex-start;gap:15px;margin:13px 0 0;padding:6px 0 9px;min-height:34px;font-size:12px;border-bottom:1px solid #a58bb8;text-align:left;line-height:1.2}
+.intro-bottom .text-link span{margin:0!important}
+/* Only one legible shopping illustration. Other micro-icons were visual noise. */
+.hero-constellation{display:none!important}
+.hero-bag{right:-68px;bottom:4px;width:104px;height:104px;border-radius:23px;z-index:1;opacity:.90;pointer-events:none}
+.hero-bag-svg.klc-store-svg{width:82px;height:89px}
+/* Auth panel follows the grid, not a negative offset or translating pointer. */
+.main .auth-card{position:relative;min-width:0;width:100%;max-width:495px;justify-self:end;align-self:center;max-height:100%;overflow:hidden;transform:none;translate:none;
+  padding:clamp(18px,2vw,27px) clamp(22px,2.1vw,33px) clamp(15px,1.4vw,21px);}
+.auth-card .card-top{align-items:center}
+.auth-card .auth-content{min-height:0;min-width:0;scrollbar-width:none}
+.auth-card h2{font-size:clamp(34px,3vw,43px);line-height:1.08;margin:16px 0 8px;letter-spacing:-.02em}
+.auth-card .form-subtitle{font-size:12.5px;line-height:1.5;margin-bottom:17px;max-width:100%}
+.auth-card .field{margin-bottom:13px}
+.auth-card .field label{line-height:1.4;margin-bottom:6px}
+.auth-card .primary-button{min-height:49px}
+.auth-card .card-foot{margin-top:13px;padding-top:12px}
+/* Narrow laptop / shorter screens keep form fully usable. */
+@media(min-width:761px) and (max-height:820px){
+ .header{height:clamp(54px,8.3dvh,74px)}
+ .footer{height:clamp(35px,5.9dvh,49px)}
+ .main{padding-block:6px}
+ .hero-type h1{font-size:clamp(54px,5.45vw,74px)}
+ .hero-type h1 .hero-line:last-child{font-size:clamp(37px,3.85vw,52px)}
+ .intro-bottom{margin-top:20px!important}
+ .intro-bottom p{font-size:12.5px;line-height:1.55}
+ .intro-bottom .text-link{margin-top:6px}
+ .auth-card h2{font-size:clamp(29px,2.8vw,38px);margin:8px 0 5px}
+ .auth-card .form-subtitle{font-size:12px;line-height:1.4;margin-bottom:9px}
+ .auth-card .field{margin-bottom:9px}
+ .auth-card .card-foot{margin-top:7px;padding-top:8px}
+ .hero-bag{width:90px;height:90px;right:-55px}
+ .hero-bag-svg.klc-store-svg{width:72px;height:78px}
+}
+@media(min-width:761px) and (max-width:1150px){
+ .main{grid-template-columns:minmax(0,1fr) minmax(330px,1fr);column-gap:clamp(22px,4vw,65px)}
+ .hero-type h1{font-size:clamp(43px,5.4vw,64px)}
+ .hero-type h1 .hero-line:last-child{font-size:clamp(29px,3.7vw,44px)}
+ .hero-type .hero-star{right:-13px;width:46px;height:46px}
+ .hero-bag{right:-32px;width:70px;height:70px}
+ .hero-bag-svg.klc-store-svg{width:58px;height:60px}
+ .intro-bottom p{font-size:12.5px}
+ .header-caption{font-size:9px;letter-spacing:.08em}
+ .footer-motto{font-size:9px;letter-spacing:.07em}
+}
+/* Tablet portrait: keep a single readable axis with no edge collisions. */
+@media(min-width:761px) and (max-width:900px) and (orientation:portrait){
+ .main{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;width:min(88%,520px);padding:12px 0}
+ .main .intro{width:100%}
+ .hero-bag{display:none}
+ .main .auth-card{width:100%;max-width:100%;justify-self:auto;flex:0 1 auto}
+ .footer-motto{display:none}
+ .footer{grid-template-columns:1fr 1fr}
+}
+/* Mobile uses the same horizontal gutter for header, hero, form and footer. */
+@media(max-width:760px){
+ :root{--klc-side-gutter:clamp(16px,5.1vw,28px)}
+ .header{height:clamp(52px,7.2dvh,66px);min-height:0;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+ .header .brand{gap:7px}
+ .header .brand svg{width:26px;height:26px}
+ .header .brand>span{font-size:clamp(21px,5.7vw,27px)}
+ .header nav{gap:clamp(8px,3vw,16px);justify-self:end;margin:0}
+ .header nav a{font-size:clamp(10px,2.9vw,12px);min-height:42px;gap:4px}
+ .header-caption{display:none}
+ .main{width:min(calc(100% - 2 * var(--klc-side-gutter)),510px);display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:clamp(9px,1.8dvh,15px);padding:7px 0;min-height:0;max-height:none;overflow:hidden}
+ .main .intro{width:100%;flex:none}
+ .intro>.eyebrow{font-size:9px;min-height:0;line-height:1.4;letter-spacing:.075em}
+ .hero-type{margin-top:5px}
+ .hero-type h1{font-size:clamp(38px,10.4vw,49px);line-height:1}
+ .hero-type h1 .hero-line:last-child{font-size:clamp(24px,6.6vw,32px);line-height:1.13;margin:3px 0 0 2px}
+ .hero-type .hero-star{right:clamp(15px,11vw,46px);top:-8px;width:30px;height:30px}
+ .hero-type .klc-story-silk,.hero-type .aurora-orbit{opacity:.06}
+ .hero-type .hero-orbit-stage{opacity:.19}
+ .hero-type .orbit{opacity:.08}
+ .intro-bottom{margin:7px 0 0!important;max-width:100%}
+ .intro-bottom p{font-size:11.5px;line-height:1.45;max-width:36ch}
+ .intro-bottom .text-link{display:none}
+ .hero-bag{display:none!important}
+ .main .auth-card{max-width:100%;width:100%;justify-self:auto;align-self:center;flex:0 1 auto;max-height:100%;padding:clamp(12px,2vh,18px) clamp(16px,4.8vw,25px) 12px}
+ .auth-card h2{font-size:clamp(28px,7.5vw,35px);margin:10px 0 6px}
+ .auth-card .form-subtitle{font-size:12px;line-height:1.45;margin-bottom:12px}
+ .footer{height:clamp(32px,5.4dvh,44px);min-height:0;display:grid;grid-template-columns:1fr auto;gap:8px}
+ .footer-motto{display:none}
+ .footer>div{gap:12px}
+ .footer button{font-size:11px;min-height:32px;padding:4px 0}
+ .footer>span:first-child{font-size:9.5px;letter-spacing:.055em}
+}
+/* Keep 320px devices useful while eliminating nonfunctional extra rows. */
+@media(max-width:760px) and (max-height:700px){
+ .header{height:47px}
+ .main{gap:5px;padding:3px 0}
+ .intro>.eyebrow,.intro-bottom{display:none}
+ .hero-type{margin:0}
+ .hero-type h1{font-size:clamp(33px,9.6vw,40px)}
+ .hero-type h1 .hero-line:last-child{font-size:clamp(20px,6.2vw,27px)}
+ .main .auth-card{padding:10px 16px 9px}
+ .auth-card h2{font-size:clamp(26px,7.2vw,31px);margin:6px 0 4px}
+ .auth-card .form-subtitle{font-size:11.5px;margin-bottom:8px}
+ .auth-card .field{margin-bottom:8px}
+ .auth-card .card-foot{display:none}
+ .footer{height:32px}
+}
+/* Respect the long-step accessibility fallback, never trap unseen controls. */
+@media(max-width:760px){
+ body[data-auth-layout="dense"] .main .auth-card,
+ body.klc-mobile-tight .main .auth-card{max-height:100%;min-height:0}
+ body.klc-mobile-tight .auth-card .auth-content{overflow-y:auto;scrollbar-width:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .klc-story-silk,.hero-orbit-stage,.hero-star,.hero-bag{animation:none!important}
+}
+@media(min-width:761px) and (max-width:1150px){
+ /* Prevent the shop artwork from touching the auth card on narrow laptops. */
+ .hero-bag{right:8px;width:66px;height:66px}
+ .hero-bag-svg.klc-store-svg{width:54px;height:57px}
+}
+
+/* Klikchart 2.3: one layout authority for the editorial hero, auth and navigation.
+   The complete supplied elastic illustration occupies a dedicated art layer,
+   not the text's coordinate system. No mouse parallax or card scaling. */
+:root{--klc-content-width:1380px;--klc-side-gutter:clamp(22px,6.4vw,102px)}
+html,body{width:100%;height:100%;height:100dvh;overflow:hidden;overscroll-behavior:none}
+body{min-height:0;overflow:hidden}
+.header,.main,.footer{
+ width:min(calc(100% - 2 * var(--klc-side-gutter)),var(--klc-content-width));
+ max-width:var(--klc-content-width);margin-inline:auto;
+}
+.header,.footer{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;column-gap:20px;flex-shrink:0}
+.header{height:clamp(72px,10dvh,104px);min-height:0;padding:0;border-bottom:1px solid rgba(221,204,249,.2)}
+.header .brand{justify-self:start;display:inline-flex;align-items:center;gap:10px;line-height:1.1;white-space:nowrap}
+.header .brand svg{width:32px;height:32px;flex-shrink:0}
+.header .brand>span{font-size:clamp(25px,2vw,31px);letter-spacing:-.055em;font-weight:600}
+.header nav{justify-self:center;display:flex;align-items:center;gap:28px;margin:0!important;white-space:nowrap}
+.header nav a{display:inline-flex;align-items:center;gap:5px;min-height:42px;font-size:13px;color:#ecdef4;line-height:1.3}
+.header nav a span{margin:0}
+.header nav a[aria-current="page"]{color:#f9ecff}
+.header-caption{justify-self:end;display:flex;gap:11px;align-items:center;white-space:nowrap;text-align:right;font-size:10px;letter-spacing:.12em;font-weight:600;line-height:1.3;color:#e1d0eb}
+.header-caption .status-dot{flex:0 0 6px}
+.footer{height:clamp(44px,6dvh,57px);min-height:0;padding:0;border-top:1px solid rgba(221,204,249,.2);font-size:10px;letter-spacing:.1em;line-height:1.3;color:#d2c3df}
+.footer>span:first-child{justify-self:start;white-space:nowrap}
+.footer-motto{justify-self:center;white-space:nowrap;margin:0!important;font-size:10px;letter-spacing:.1em}
+.footer>div{justify-self:end;display:flex;align-items:center;gap:22px;white-space:nowrap}
+.footer button{min-height:38px;padding:8px 0;font-size:12px;line-height:1.4}
+.main{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(375px,.88fr);align-items:center;column-gap:clamp(48px,7vw,120px);min-height:0;flex:1 1 auto;padding:10px 0;overflow:hidden}
+.main .intro{position:relative;isolation:isolate;align-self:center;max-width:100%;min-width:0;translate:none!important;transform:none!important}
+/* Every editorial text element starts at the same x; none are indented for decoration. */
+.intro>.eyebrow,.hero-type,.intro-bottom{margin-left:0!important;padding-left:0!important}
+.intro>.eyebrow{display:flex;gap:10px;align-items:center;font-size:11px;line-height:1.4;letter-spacing:.115em;font-weight:600;color:#e3d4ec}
+.intro>.eyebrow .tiny-star{line-height:1;flex:none;font-size:14px}
+.hero-type{position:relative;isolation:isolate;width:100%;max-width:100%;margin:19px 0 0!important}
+.hero-type h1{font-family:'Cormorant Garamond',Georgia,serif;width:100%;max-width:100%;margin:0!important;line-height:1;letter-spacing:-.046em;font-size:clamp(56px,5.8vw,86px);font-weight:300;position:relative;z-index:2;white-space:normal}
+.hero-type h1 .hero-line:first-child{display:block;max-width:100%;white-space:nowrap;margin:0!important;line-height:1.05}
+.hero-type h1 .hero-line:last-child{display:block;width:100%;max-width:100%;font-size:clamp(37px,3.95vw,60px);line-height:1.12;letter-spacing:-.055em;margin:4px 0 0!important;white-space:nowrap;color:#e4c5f2}
+.intro-bottom{position:relative;z-index:3;display:block;max-width:min(42ch,calc(100% - 180px));margin:25px 0 0!important}
+.intro-bottom .index{display:none!important}
+.intro-bottom>div{width:100%;min-width:0}
+.intro-bottom p{max-width:42ch;margin:0;font-size:14px;line-height:1.65;color:#e3d4ec;text-wrap:pretty}
+.intro-bottom .text-link{display:inline-flex;align-items:center;gap:17px;justify-content:flex-start;margin:12px 0 0;padding:6px 0 8px;font-size:12px;line-height:1.3;border-bottom:1px solid rgba(209,181,237,.6);min-height:34px}
+.intro-bottom .text-link span{margin:0!important}
+/* Decorative commerce layout is now handled in v24-commerce-motion.css. */
+/* Historical decoration layers no longer render. */
+.hero-bag,.hero-orbit-stage,.aurora-orbit,.orbit,.hero-star,.klc-story-silk{display:none!important}
+.main .auth-card{position:relative;width:100%;min-width:0;max-width:495px;max-height:100%;justify-self:end;align-self:center;overflow:hidden;translate:none;transform:none;padding:clamp(18px,2vw,28px) clamp(22px,2.1vw,34px) clamp(14px,1.6vw,22px)}
+.auth-card .auth-content{width:100%;min-width:0;min-height:0;scrollbar-width:none}
+.auth-card .card-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.auth-card .card-top .eyebrow{font-size:10px;line-height:1.4;letter-spacing:.12em;color:#e3d1ee}
+.auth-card h2{font-family:'Cormorant Garamond',Georgia,serif;letter-spacing:-.018em;font-size:clamp(34px,3.1vw,44px);line-height:1.07;margin:16px 0 7px;max-width:100%;text-wrap:balance}
+.auth-card .form-subtitle{font-size:12.5px;line-height:1.5;max-width:42ch;margin:0 0 17px;color:#e2d1eb;text-wrap:pretty}
+.auth-card .field{margin-bottom:12px}
+.auth-card .field label,.auth-card .field-label{font-size:12px;line-height:1.4;margin-bottom:7px;font-weight:600;color:#f1e7f7}
+.auth-card .input-wrap input{font-size:14px;line-height:1.4}
+.auth-card .primary-button{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:48px;font-size:13px}
+.auth-card .separator{margin-block:12px 4px}
+.auth-card .signup{display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;gap:4px 8px;line-height:1.5;text-align:center}
+.auth-card .card-foot{margin-top:13px;padding-top:11px;font-size:11px;line-height:1.4}
+/* The 6s intro from prior releases no longer translates brand, header, card or footer.
+   Text reveal remains a one-off opacity-only transition, with no position shift. */
+.klc-motion-on .brand,.klc-motion-on .header nav,.klc-motion-on .header-caption,.klc-motion-on .intro>.eyebrow,
+.klc-motion-on .hero-line:first-child,.klc-motion-on .hero-line:last-child,
+.klc-motion-on .intro-bottom,.klc-motion-on .auth-card,.klc-motion-on .footer{animation:none!important}
+.klc-motion-on .hero-line{opacity:1!important;translate:none!important;transform:none!important}
+/* Below 1300px: keep the hero text first. */
+@media (min-width:761px) and (max-width:1299px){
+ .main{grid-template-columns:minmax(0,1fr) minmax(350px,1fr);column-gap:clamp(25px,4vw,56px)}
+ .intro-bottom{max-width:44ch}
+ .hero-type h1{font-size:clamp(44px,5.55vw,74px)}
+ .hero-type h1 .hero-line:last-child{font-size:clamp(30px,3.75vw,48px)}
+}
+@media (min-width:761px) and (max-height:810px){
+ .header{height:clamp(56px,8.3dvh,76px)}
+ .footer{height:clamp(38px,5.6dvh,49px)}
+ .main{padding:6px 0}
+ .hero-type h1{font-size:clamp(51px,5.35vw,75px)}
+ .hero-type h1 .hero-line:last-child{font-size:clamp(34px,3.7vw,53px)}
+ .intro-bottom{margin-top:19px!important}
+ .intro-bottom p{font-size:12.5px;line-height:1.55}
+ .intro-bottom .text-link{margin-top:6px}
+ .auth-card h2{font-size:clamp(30px,2.85vw,39px);margin:9px 0 5px}
+ .auth-card .form-subtitle{font-size:12px;line-height:1.4;margin-bottom:10px}
+ .auth-card .field{margin-bottom:9px}
+ .auth-card .card-foot{margin-top:8px;padding-top:8px}
+}
+/* Tablet portrait: text and form vertically centered. */
+@media(min-width:761px) and (max-width:900px) and (orientation:portrait){
+ .main{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:15px;width:min(88%,515px);padding:12px 0}
+ .main .intro{width:100%;flex:none}
+ .main .auth-card{max-width:100%;flex:0 1 auto;justify-self:auto}
+ .intro-bottom{max-width:100%}
+ .footer-motto{display:none}
+ .footer{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+ :root{--klc-side-gutter:clamp(16px,5.1vw,28px)}
+ .header{height:clamp(53px,7.1dvh,65px);grid-template-columns:minmax(0,1fr) auto;gap:8px}
+ .header .brand{gap:7px}
+ .header .brand svg{width:26px;height:26px}
+ .header .brand>span{font-size:clamp(21px,5.7vw,27px)}
+ .header nav{justify-self:end;gap:clamp(9px,2.5vw,15px)}
+ .header nav a{font-size:clamp(10px,2.85vw,12px);min-height:42px}
+ .header-caption{display:none}
+ .main{width:min(calc(100% - 2*var(--klc-side-gutter)),510px);display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:clamp(8px,1.6dvh,14px);padding:6px 0;min-height:0;overflow:hidden}
+ .main .intro{width:100%;flex:none}
+ .intro>.eyebrow{font-size:9px;letter-spacing:.08em;line-height:1.4}
+ .hero-type{margin-top:6px!important}
+ .hero-type h1{font-size:clamp(37px,10.4vw,49px);line-height:1.05}
+ .hero-type h1 .hero-line:last-child{font-size:clamp(24px,6.4vw,31px);margin-top:1px!important}
+ .intro-bottom{max-width:100%;margin-top:7px!important}
+ .intro-bottom p{font-size:11.5px;line-height:1.45;max-width:36ch}
+ .intro-bottom .text-link{display:none}
+ .main .auth-card{max-width:100%;width:100%;flex:0 1 auto;align-self:center;justify-self:auto;max-height:100%;padding:clamp(12px,2dvh,19px) clamp(15px,4.8vw,24px) 11px}
+ .auth-card h2{font-size:clamp(27px,7.5vw,35px);line-height:1.09;margin:10px 0 5px}
+ .auth-card .form-subtitle{font-size:12px;line-height:1.44;margin-bottom:12px}
+ .auth-card .field{margin-bottom:10px}
+ .auth-card .field label{font-size:12px;margin-bottom:6px}
+ .auth-card .card-foot{font-size:10px;line-height:1.3;margin-top:8px;padding-top:7px}
+ .footer{height:clamp(32px,5.3dvh,44px);grid-template-columns:1fr auto;gap:8px}
+ .footer-motto{display:none}
+ .footer>div{gap:12px}
+ .footer button{font-size:11px;padding:4px 0;min-height:32px}
+ .footer>span:first-child{font-size:9.5px;letter-spacing:.055em}
+}
+@media(max-width:760px) and (min-height:775px) and (min-width:381px){
+ /* Small accent on tall mobile only. */
+ .intro>.eyebrow,.hero-type h1,.intro-bottom{position:relative;z-index:2}
+}
+@media(max-width:760px) and (max-height:700px){
+ .header{height:47px}
+ .main{gap:5px;padding:3px 0}
+ .intro>.eyebrow,.intro-bottom{display:none}
+ .hero-type{margin-top:0!important}
+ .hero-type h1{font-size:clamp(31px,9.6vw,40px)}
+ .hero-type h1 .hero-line:last-child{font-size:clamp(20px,6.2vw,26px)}
+ .main .auth-card{padding:10px 15px 8px}
+ .auth-card h2{font-size:clamp(26px,7.1vw,31px);margin:6px 0 4px}
+ .auth-card .form-subtitle{font-size:11.4px;line-height:1.4;margin-bottom:8px}
+ .auth-card .field{margin-bottom:8px}
+ .auth-card .card-foot{display:none}
+ .footer{height:32px}
+}
+@media(max-width:760px){
+ body[data-auth-layout="dense"] .main .auth-card,body.klc-mobile-tight .main .auth-card{max-height:100%;min-height:0}
+ body.klc-mobile-tight .auth-card .auth-content{overflow-y:auto;scrollbar-width:none}
+}
+@media(prefers-reduced-motion:reduce){
+}

@@ -1,0 +1,14 @@
+/* v3.9 — Profile independent email/WhatsApp verification */
+.account-verification-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0 12px;}
+.account-contact-panel{margin:0;min-width:0;align-content:start;gap:6px;padding:13px;}
+.account-contact-header{display:flex;align-items:center;justify-content:space-between;gap:5px;flex-wrap:wrap;}
+.account-contact-header .account-wa-label{display:inline-flex;align-items:center;gap:6px;}
+.account-contact-header .account-wa-label svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;flex:none;}
+.account-verified-tag{font-size:10px;line-height:1.3;letter-spacing:0.01em;border:1px solid rgba(213,190,234,.4);padding:3px 7px;border-radius:100px;color:#efdbff;white-space:nowrap;}
+.account-verified-tag[data-status='verified']{color:#e6f5e6;border-color:rgba(169,228,183,.5);}
+.account-contact-panel .account-wa-status{font-size:11.5px;line-height:1.4;}
+.account-contact-panel small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.account-contact-panel .account-wa-button{margin-top:auto;min-height:35px;padding:7px;font-size:11px;}
+body[data-auth-stage='app-start'] .intro .klc-motion-art{pointer-events:none;}
+@media(max-width:760px){.account-verification-grid{gap:7px;margin:6px 0 8px;}.account-contact-panel{padding:9px;gap:4px;}.account-contact-header{align-items:flex-start;gap:3px;}.account-verified-tag{font-size:9px;padding:2px 5px;}.account-contact-panel .account-wa-status{font-size:10px;}.account-contact-panel .account-wa-button{font-size:10px;padding:6px 4px;min-height:30px;}}
+@media(max-width:359px), (max-height:610px){.account-verification-grid{grid-template-columns:1fr;gap:5px;}.account-contact-panel{padding:7px 10px;gap:2px;}.account-contact-header{align-items:center;}.account-contact-panel .account-wa-button{min-height:29px;}.account-contact-panel .account-wa-status{font-size:10px;}}

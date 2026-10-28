@@ -1,0 +1,15 @@
+/* v2.7 account verification view, constrained to card (no page scrolling). */
+.account-wa-panel{display:grid;gap:7px;padding:13px 15px;margin:9px 0 13px;
+ border:1px solid rgba(216,189,245,.34);border-radius:12px;
+ background:linear-gradient(140deg,rgba(196,157,240,.12),rgba(52,38,76,.24));}
+.account-wa-label{font-weight:700;font-size:12px;color:#e9d8f7;}
+.account-wa-status{font-size:12px;line-height:1.45;color:#e7d8ef;}
+.account-wa-panel small,.account-phone{font-size:12px;color:#d9c5e8;}
+.account-wa-button{border:1px solid #cbb0eb;border-radius:8px;padding:10px 12px;
+ font-weight:700;font-size:12px;color:#281c36;background:#d9c3f2;text-align:center;}
+.account-wa-button:hover{background:#edddfa;transform:translateY(-1px);}
+.account-wa-button:disabled{opacity:.65;cursor:wait;}
+.account-phone{margin:0 0 12px;}
+@media(max-width:760px){.account-wa-panel{padding:8px 12px;gap:5px;margin:6px 0 9px;}}
+@media(max-height:680px){.account-wa-panel{padding:8px 10px;gap:4px;}}
+@media(prefers-reduced-motion:reduce){.account-wa-button{transition:none;transform:none!important;}}

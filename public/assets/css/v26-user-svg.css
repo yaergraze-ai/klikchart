@@ -1,0 +1,65 @@
+/* Klikchart v2.6 — exact user-supplied animated SVG replaces the CSS bag.
+   The source is kept untouched in design/reference; only the viewport of this web copy
+   is cropped to remove transparent padding. Never move readable text with this art. */
+.klc-motion-art {
+  position:absolute;
+  z-index:1;
+  width:clamp(238px,24vw,340px);
+  aspect-ratio:490 / 460;
+  right:-90px;
+  top:44%;
+  user-select:none;
+  pointer-events:none;
+  overflow:visible;
+  isolation:isolate;
+  transform:none;
+}
+.klc-motion-art__image {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  filter:brightness(1.48) drop-shadow(0 0 9px rgba(197,153,239,.18));
+}
+/* Keep the headline and actual inputs as the highest layers. */
+.intro > .eyebrow, .hero-type, .intro-bottom { position:relative; z-index:3; }
+/* The artwork occupies the vacant strip between hero copy and form. */
+@media (min-width:1200px) and (max-width:1499px) {
+  .klc-motion-art { width:240px; top:49%; right:-84px; opacity:.92; }
+}
+@media (min-width:761px) and (max-width:1199px) {
+  .klc-motion-art {display:none;}
+}
+@media (min-width:761px) and (max-height:730px) {
+  .klc-motion-art { width:215px; top:52%; right:-66px; }
+}
+/* Very small screens prioritize the form; do not force scroll to display decor. */
+@media (max-width:760px) {
+  .klc-motion-art {display:none;}
+}
+@media (min-width:381px) and (max-width:760px) and (min-height:790px) {
+  .klc-motion-art { display:block; width:92px; top:-7px; right:-3px; opacity:.78; }
+  .klc-motion-art__image {filter:brightness(1.7) drop-shadow(0 0 6px rgba(197,153,239,.18));}
+  body[data-auth-layout="dense"] .klc-motion-art,
+  body.klc-mobile-focus .klc-motion-art,
+  body.klc-mobile-tight .klc-motion-art {display:none;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .klc-motion-art,.klc-motion-art * {animation:none !important;transition:none !important;}
+}
+
+/* v2.7 visual correction — crop uses viewBox 355 515 355 330.
+   Larger rendered vectors with no layout shifts or extra scroll. */
+@media (min-width: 1500px) {
+ .klc-motion-art { width:clamp(385px,26vw,420px);right:-140px;top:35%;opacity:1; }
+}
+@media (min-width:1200px) and (max-width:1499px) {
+ .klc-motion-art { width:clamp(340px,27vw,390px);top:42%;right:-110px;opacity:1; }
+}
+@media (min-width:761px) and (max-height:730px){
+ .klc-motion-art{width:310px;top:47%;right:-94px;}
+}
+.klc-motion-art__image{filter:brightness(1.75) contrast(1.1) drop-shadow(0 0 12px rgba(215,172,251,.36));}
+@media (min-width:381px) and (max-width:760px) and (min-height:790px) {
+ .klc-motion-art{width:118px;right:-5px;top:-4px;}
+}
