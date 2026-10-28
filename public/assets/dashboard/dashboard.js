@@ -93,7 +93,7 @@ function refreshAccountChrome(){
 function wireContent(){document.getElementById('cat-filter')?.addEventListener('change',e=>{S.category=e.target.value;S.page=1;load()});document.getElementById('sort-filter')?.addEventListener('change',e=>{S.sort=e.target.value;S.page=1;load()});}
 
 let dialogReturnFocus=null;
-function closeDialog(){document.getElementById('modal')?.remove();document.body.classList.remove('dialog-open');if(dialogReturnFocus?.isConnected)dialogReturnFocus.focus({preventScroll:true});dialogReturnFocus=null;}
+function closeDialog(){document.getElementById('modal')?.dispatchEvent(new Event('kc-dialog-close'));document.getElementById('modal')?.remove();document.body.classList.remove('dialog-open');if(dialogReturnFocus?.isConnected)dialogReturnFocus.focus({preventScroll:true});dialogReturnFocus=null;}
 function dialog(title,body,footer=''){
  closeDialog();dialogReturnFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;
  const x=document.createElement('div');x.id='modal';x.className='overlay';
@@ -101,6 +101,22 @@ function dialog(title,body,footer=''){
  document.body.appendChild(x);document.body.classList.add('dialog-open');
  x.addEventListener('click',event=>{if(event.target===x)closeDialog()});
  x.querySelector('input:not([type=hidden]),select,textarea,button')?.focus({preventScroll:true});
+}
+async function confirmAction(title,description,{confirmLabel='Konfirmasi',fieldLabel='',fieldValue='',required=false,danger=false}={}){
+  dialog(title,`<p class="confirm-description">${E(description)}</p>${fieldLabel?`<div class="field"><label for="kc-confirm-note">${E(fieldLabel)}</label><textarea id="kc-confirm-note" rows="3" maxlength="300" ${required?'required':''}>${E(fieldValue)}</textarea></div>`:''}<div class="dialog-footer"><button class="btn" type="button" data-action="dialog-close">Kembali</button><button class="btn ${danger?'danger':'primary'}" type="button" id="kc-confirm-accept">${E(confirmLabel)}</button></div>`);
+  const modal=document.getElementById('modal');
+  return new Promise(resolve=>{
+    let completed=false;
+    const settle=value=>{if(completed)return;completed=true;resolve(value)};
+    modal.addEventListener('kc-dialog-close',()=>settle(null),{once:true});
+    modal.querySelector('#kc-confirm-accept')?.addEventListener('click',()=>{
+      const field=modal.querySelector('#kc-confirm-note');
+      if(field && required && !field.value.trim()){field.setCustomValidity('Kolom ini wajib diisi.');field.reportValidity();field.addEventListener('input',()=>field.setCustomValidity(''),{once:true});return}
+      const value={note:field?.value.trim()||''};
+      closeDialog();settle(value);
+    });
+    modal.querySelector('#kc-confirm-accept')?.focus({preventScroll:true});
+  });
 }
 function formFields(parts){return `<div class="form-grid">${parts.map(([key,label,type,value,wide,extra])=>{const optional=['description','imageUrl','comment'].includes(key);return `<div class="field ${wide?'wide':''}"><label for="f-${E(key)}">${E(label)}</label>${type==='textarea'?`<textarea id="f-${E(key)}" name="${E(key)}" maxlength="3000" ${optional?'':'required'}>${E(value)}</textarea>`:type==='select'?`<select id="f-${E(key)}" name="${E(key)}">${extra.map(([v,t])=>`<option value="${E(v)}" ${String(v)===String(value)?'selected':''}>${E(t)}</option>`).join('')}</select>`:`<input id="f-${E(key)}" name="${E(key)}" type="${type}" value="${E(value)}" ${type==='number'?'min="0" step="1"':''} ${optional?'':'required'}>`}</div>`}).join('')}</div>`}
 function formDialog(title,formKind,fields,submitLabel='Simpan'){dialog(title,`<form id="dialog-form" data-form="${formKind}">${formFields(fields)}<div class="dialog-footer"><button class="btn" type="button" data-action="dialog-close">Batal</button><button class="btn primary" type="submit">${E(submitLabel)}</button></div></form>`)}
@@ -280,21 +296,21 @@ document.addEventListener('click',async e=>{const target=e.target.closest('[data
  if(act.startsWith('wishlist-add:')){if(!isLogged()){location.assign('/login');return}await api('wishlist',{productId:act.split(':')[1],saved:true});toast('Disimpan ke Favorit.');return}
  if(act.startsWith('wishlist-remove:')){await api('wishlist',{productId:act.split(':')[1],saved:false});toast('Dihapus dari Favorit.');await load();return}
  if(act.startsWith('review:')){const productId=act.split(':')[1];formDialog('Beri ulasan produk','review',[['productId','ID Produk','text',productId,true],['rating','Rating 1–5','select','5',false,[[5,'★★★★★ (5)'],[4,'★★★★☆ (4)'],[3,'★★★☆☆ (3)'],[2,'★★☆☆☆ (2)'],[1,'★☆☆☆☆ (1)']]],['comment','Pengalaman belanja','textarea','',true]],'Kirim ulasan');const f=document.getElementById('f-productId');if(f)f.readOnly=true;return}
- if(act.startsWith('cod:')){const id=act.split(':')[1];if(!confirm('Catat bahwa pembayaran COD benar-benar sudah diterima? Ini bukan verifikasi dari payment gateway.'))return;await api('orders/'+id+'/report-cod',{});toast('Penerimaan COD dicatat oleh penjual.');await load();return}
+ if(act.startsWith('cod:')){const id=act.split(':')[1];if(!(await confirmAction('Catat penerimaan COD','Pastikan pembayaran tunai sudah diterima. Catatan ini bukan verifikasi dari payment gateway.',{confirmLabel:'Catat pembayaran'})))return;await api('orders/'+id+'/report-cod',{});toast('Penerimaan COD dicatat oleh penjual.');await load();return}
  if(act.startsWith('cart-add:')){if(!isLogged()){location.assign('/login');return}const id=act.split(':')[1];const c=await api('cart');const old=c.items.find(x=>x.product_id===id)?.quantity||0;await api('cart',{productId:id,quantity:old+1});toast('Produk ditambahkan ke keranjang.');return}
  if(act.startsWith('cart-qty:')){const [,productId,qty]=act.split(':');await api('cart',{productId,quantity:Number(qty)});toast('Keranjang diperbarui');await load();return}
  if(act==='checkout'){await checkoutDialog();return}
  if(act.startsWith('address-edit:')){const a=S.data.addresses?.items?.find(x=>x.id===act.slice(13));if(a)openAddress(a);return}
  if(act==='address-new'){openAddress();return}
- if(act.startsWith('address-delete:')){if(!confirm('Hapus alamat ini?'))return;await api('addresses/'+act.slice('address-delete:'.length)+'/delete',{});toast('Alamat dihapus');await load();return}
- if(act.startsWith('order:')){const [,id,status]=act.split(':');if(!confirm('Ubah status menjadi '+status+'?'))return;let tracking='';if(status==='shipped'){tracking=prompt('Nomor resi / catatan pengiriman (manual):','')||'';if(!tracking.trim()){toast('Isi resi atau catatan pengiriman terlebih dahulu.');return}}await api('orders/'+id+'/status',{status,tracking});toast('Status pesanan diperbarui.');await load();return}
+ if(act.startsWith('address-delete:')){if(!(await confirmAction('Hapus alamat','Alamat yang dihapus tidak dapat dipilih untuk pesanan baru.',{confirmLabel:'Hapus alamat',danger:true})))return;await api('addresses/'+act.slice('address-delete:'.length)+'/delete',{});toast('Alamat dihapus');await load();return}
+ if(act.startsWith('order:')){const [,id,status]=act.split(':');const answer=await confirmAction('Ubah status pesanan','Status pesanan akan diubah menjadi '+(status==='shipped'?'Dikirim':status==='packed'?'Dikemas':status==='accepted'?'Diterima':status==='delivered'?'Selesai':status==='canceled'?'Dibatalkan':status)+'.',{confirmLabel:'Simpan status',fieldLabel:status==='shipped'?'Nomor resi / catatan pengiriman (manual)':'',required:status==='shipped'});if(!answer)return;const tracking=answer.note;await api('orders/'+id+'/status',{status,tracking});toast('Status pesanan diperbarui.');await load();return}
  if(act==='product-new'){productDialog();return}
  if(act.startsWith('product-edit:')){const p=S.data.sellerProducts?.items?.find(x=>x.id===act.split(':')[1]);if(p)productDialog(p);return}
- if(act.startsWith('application:')){const [,id,status]=act.split(':');const note=prompt(status==='approved'?'Catatan persetujuan (opsional)':'Alasan penolakan:','')||'';if(!confirm('Konfirmasi keputusan pengajuan toko?'))return;await api('owner/applications/'+id+'/decision',{status,note});toast('Keputusan tersimpan.');await load();return}
- if(act.startsWith('shop-status:')){const [,id,status]=act.split(':');if(!confirm('Ubah status toko?'))return;await api('owner/shops/'+id+'/status',{status});toast('Status toko tersimpan.');await load();return}
- if(act.startsWith('mod-product:')){const [,id,status]=act.split(':');if(!confirm('Ubah status produk?'))return;await api('owner/products/'+id+'/status',{status});toast('Moderasi produk disimpan.');await load();return}
+ if(act.startsWith('application:')){const [,id,status]=act.split(':');const answer=await confirmAction(status==='approved'?'Setujui pengajuan toko':'Tolak pengajuan toko','Periksa informasi calon penjual sebelum menyimpan keputusan.',{confirmLabel:status==='approved'?'Setujui toko':'Tolak pengajuan',fieldLabel:status==='approved'?'Catatan persetujuan (opsional)':'Alasan penolakan',required:status==='rejected',danger:status==='rejected'});if(!answer)return;const note=answer.note;await api('owner/applications/'+id+'/decision',{status,note});toast('Keputusan tersimpan.');await load();return}
+ if(act.startsWith('shop-status:')){const [,id,status]=act.split(':');if(!(await confirmAction('Ubah status toko','Perubahan status dapat memengaruhi produk dan pesanan toko.',{confirmLabel:'Simpan status',danger:status==='suspended'})))return;await api('owner/shops/'+id+'/status',{status});toast('Status toko tersimpan.');await load();return}
+ if(act.startsWith('mod-product:')){const [,id,status]=act.split(':');if(!(await confirmAction('Moderasi produk','Perubahan status produk akan langsung memengaruhi katalog penjualan.',{confirmLabel:'Terapkan moderasi',danger:status==='archived'})))return;await api('owner/products/'+id+'/status',{status});toast('Moderasi produk disimpan.');await load();return}
  if(act==='category-new'){formDialog('Kategori baru','category-new',[['name','Nama kategori','text','',true],['slug','Slug (huruf kecil dan tanda -)','text','',true]]);return}
- if(act==='logout'){const r=await fetch('/api/logout',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json','X-Klikchart-Request':'1'},body:'{}'});if(r.ok)location.assign('/login');return}
+ if(act==='logout'){const r=await fetch('/api/logout',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json','X-Klikchart-Request':'1'},body:'{}'});if(r.ok){location.assign('/login')}else{toast('Gagal keluar dari akun. Coba lagi.')}return}
  }catch(err){toast(msg(err));}});
 document.addEventListener('click',e=>{if(!e.target.closest('.profile-menu-host')||e.target.closest('.profile-menu-item')){document.querySelectorAll('.profile-menu').forEach(p=>p.hidden=true);document.querySelectorAll('.profile-menu-toggle').forEach(b=>b.setAttribute('aria-expanded','false'));}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.profile-menu').forEach(p=>p.hidden=true);document.querySelectorAll('.profile-menu-toggle').forEach(b=>b.setAttribute('aria-expanded','false'));closeDialog()}if((e.key==='ArrowRight'||e.key==='ArrowLeft')&&e.target?.matches?.('.account-tab')){const tabs=[...document.querySelectorAll('.account-tab')];const i=tabs.indexOf(e.target);if(i>=0){e.preventDefault();const next=tabs[(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length];next?.click()}}});
