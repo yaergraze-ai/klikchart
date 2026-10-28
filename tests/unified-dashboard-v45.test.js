@@ -7,7 +7,7 @@ const app=read('backend/app.js');
 const css=read('public/assets/dashboard/dashboard.css');
 test('one account destination replaces three separate dashboard routes',()=>{
  assert.match(ui,/function account\(\)/);
- assert.match(ui,/const tabs=\[\['info','Profil'\],\['security','Keamanan'\],\['preferences','Preferensi'\],\['activity','Aktivitas'\]\]/);
+ assert.match(ui,/const tabs=\[\['info','Profil saya'\],\['security','Keamanan'\],\['preferences','Preferensi'\],\['activity','Aktivitas'\]\]/);
  assert.match(ui,/href="#account"/);
  assert.doesNotMatch(ui,/href="\/app"/);
  assert.doesNotMatch(ui,/function profile\(\)|function security\(\)|function preferences\(\)/);
@@ -33,7 +33,7 @@ test('navigating routes does not repeat bootstrap requests',()=>{
  assert.ok(ui.split("window.addEventListener('hashchange',")[1].split('\n')[0].includes('routeFromHash()')); 
 });
 test('v4.6 schema-free update and role guards remain intact',()=>{
- assert.match(read('package.json'),/"version": "4\.6\.0"/);
+ assert.match(read('package.json'),/"version": "4\.7\.0"/);
  assert.match(read('README.md'),/Tidak ada perubahan SQL dari v4\.4 → v4\.6/);
  assert.match(ui,/role\(\)!=='owner'&&next\.startsWith\('owner'\)/);
  assert.match(ui,/role\(\)==='buyer'&&next\.startsWith\('seller'\)/);

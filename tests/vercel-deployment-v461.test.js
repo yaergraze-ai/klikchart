@@ -28,5 +28,5 @@ test('Vercel does not require checked-in secrets',()=>{
  const ignore=readFileSync(new URL('../.gitignore',import.meta.url),'utf8');
  assert.match(ignore,/^\.env$/m);
  const manifest=JSON.parse(readFileSync(new URL('../package.json',import.meta.url),'utf8'));
- assert.equal(manifest.version,'4.6.1');
+ assert.equal(manifest.version,'4.7.0');
 });

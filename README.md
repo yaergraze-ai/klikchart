@@ -1,4 +1,4 @@
-# Klikchart Commerce 4.6.1 — Marketplace Full-Stack · Vercel Ready
+# Klikchart Commerce 4.7.0 — Marketplace Full-Stack · Vercel Ready
 
 **Satu panduan untuk menjalankan, memperbarui, dan menguji Klikchart.** Proyek ini memakai Express/Node.js, Supabase Auth, PostgreSQL dan Storage, SMTP Email, serta Fonnte untuk OTP WhatsApp. Antarmuka berbeda menurut peran **Pembeli**, **Penjual**, dan **Owner**.
 
@@ -129,7 +129,7 @@ Perintah kedua mengirim email uji biasa ke alamat pengirim. Jika respons SMTP be
 - Endpoint API mengirim `Cache-Control: no-store` untuk menghindari cache data akun/pesanan di browser atau perantara.
 - URL foto produk yang disimpan divalidasi sebagai HTTPS tanpa kredensial di dalam URL; unggahan lokal diperiksa ukuran dan magic bytes pada backend.
 
-## Deploy cepat Vercel — v4.6.1
+## Deploy cepat Vercel — v4.7.0
 
 Paket ini **belum dideploy** ke akun Vercel mana pun. Vercel harus dihubungkan oleh pemilik akun melalui Dashboard/CLI atau plugin Vercel. Deploy dari folder `klikchart/`, karena `package.json` dan `vercel.json` ada di folder itu. Tidak diperlukan SQL baru dibanding v4.6.
 
@@ -223,3 +223,22 @@ klikchart/
 - **Database:** tidak ada migration baru dari v4.5 ke v4.6. Jika masih berada pada v4.1, gunakan hanya `supabase/migrations/UPGRADE_V4_1_TO_V4_4.sql`.
 
 Untuk performa produksi: pastikan SSL/TLS, backup rutin, uji login/OTP pada staging, dan pantau waktu respons endpoint menggunakan Network panel browser. Tidak ada klaim pembayaran online nyata: checkout masih COD internal.
+
+
+## v4.7 — UI & UX terintegrasi (28 Oktober 2026)
+
+Paket v4.7 berfokus pada penyempurnaan aplikasi yang sudah ada, bukan perubahan database.
+
+- **Akun & Pengaturan:** layout dan tipografi lebih rapi dan responsif; pilihan verifikasi yang belum aktif muncul dalam satu alur Keamanan.
+- **Menu avatar:** menampilkan akses cepat Profil, Keamanan, Preferensi, Pesanan, dan Keluar.
+- **Tombol kata sandi:** selector label diperbaiki, mendukung tampil/sembunyikan dan label untuk pembaca layar.
+- **Dialog:** fokus masuk ke dialog ketika dibuka, terjaga selama interaksi keyboard dan kembali ke elemen asal ketika ditutup.
+- **Checkout COD:** menampilkan ringkasan item dan estimasi ongkir sebelum pengguna memberi persetujuan; jumlah resmi tetap dihitung backend dari database.
+- **Katalog:** gambar yang gagal diakses menampilkan ilustrasi cadangan.
+- **Navigasi:** halaman berbeda tidak mempertahankan scroll lama; animasi ringan dan menghormati `prefers-reduced-motion`.
+
+**Upgrade:** Tidak ada SQL tambahan. Jangan jalankan ulang `FRESH_DATABASE.sql` pada database yang sudah berisi akun. Jika database masih v4.1, jalankan satu kali `supabase/migrations/UPGRADE_V4_1_TO_V4_4.sql`.
+
+**Deployment Vercel:** Push isi folder proyek (harus ada `package.json` dan `vercel.json` di root repository), lalu biarkan GitHub memicu deployment baru. Pastikan `APP_URL` sama dengan domain Production dan variabel rahasia tersedia di Vercel Settings. Jangan commit file `.env`.
+
+**Status rilis:** Penyempurnaan tampilan ini bukan sertifikasi kesiapan untuk transaksi keuangan. Gateway pembayaran online, kurir otomatis, retur/refund, dan rekonsiliasi pembayaran belum disediakan. Uji alur pembeli, penjual, dan Owner di lingkungan staging sebelum membuka transaksi publik.

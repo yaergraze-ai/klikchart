@@ -19,7 +19,7 @@ app.use(helmet({contentSecurityPolicy:{directives:{defaultSrc:["'self'"],scriptS
 app.use(express.json({limit:'16kb'}));app.use(cookieParser());app.use('/api',(req,res,next)=>{res.setHeader('Cache-Control','no-store, max-age=0');next();});
 app.use('/api',requireOrigin);
 const wrap=fn=>(req,res,next)=>Promise.resolve().then(()=>fn(req,res)).then(data=>{if(!res.headersSent)ok(res,data);}).catch(next);
-app.get('/api/runtime',wrap(async()=>({name:'Klikchart',service:'available',version:'4.6.1'})));
+app.get('/api/runtime',wrap(async()=>({name:'Klikchart',service:'available',version:'4.7.0'})));
 app.get('/api/config',wrap(async()=>({channels:auth.channels(),loginRequiresOTP:true,signupRequiresOTP:true,languages:['id','en']})));
 app.post('/api/register',limited('register',5,3600),wrap((req,res)=>auth.register(req,res)));
 app.post('/api/register/otp/send',limited('register_otp',5,900),wrap((req,res)=>auth.sendRegisterOTP(req,res)));

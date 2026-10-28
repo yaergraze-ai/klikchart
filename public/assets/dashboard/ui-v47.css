@@ -1,0 +1,148 @@
+/* Klikchart Commerce v4.7 — cohesive storefront + console UI. Minimal paint, no new JS dependencies. */
+:root{
+  --purple:#7554d6;--deep:#17152d;--muted:#726f83;--border:#e9e5f1;
+  --shadow:0 9px 28px rgba(32,21,67,.055);
+  --kc-focus:#9e7aff;
+}
+html{scroll-behavior:smooth}
+body{background:#f8f7fb;overflow-x:hidden}
+button,a,input,select,textarea{ -webkit-tap-highlight-color:transparent }
+:where(a,button,input,textarea,select):focus-visible{outline:3px solid var(--kc-focus)!important;outline-offset:3px}
+:where(.btn,.nav-link,.profile-menu-toggle,.account-tab):focus-visible{position:relative;z-index:1}
+.content{max-width:1450px;padding:30px clamp(16px,2.3vw,38px) 56px}
+.topbar{height:76px;padding:0 clamp(16px,2.3vw,38px);background:rgba(255,255,255,.95);backdrop-filter:blur(9px)}
+.top-context strong{font-size:14px;letter-spacing:-.2px}
+.intro{margin-bottom:23px;align-items:center}
+.intro h1{font-size:clamp(23px,2.6vw,32px);letter-spacing:-1px;line-height:1.28}
+.intro p:not(.eyebrow){max-width:700px;line-height:1.6;color:#6e6a7e;font-size:13px}
+.eyebrow{letter-spacing:1.5px;font-size:10px}
+.sidebar{background:linear-gradient(180deg,#1b1934,#15132b);scrollbar-width:thin;scrollbar-color:#504766 transparent}
+.nav-link{transition:background-color .16s,color .16s,transform .16s;min-height:45px}
+.nav-link.active{background:#373052;color:#fff;box-shadow:inset 3px 0 0 #ba97ff}
+.nav-link:hover:not(.active){background:#28253f}
+.panel,.kpi,.product-card{border:1px solid #eae7f1;border-radius:18px;box-shadow:var(--shadow)}
+.panel{padding:clamp(18px,2vw,25px)}
+.panel-heading h2{font-size:16px;line-height:1.4}
+.kpi{padding:21px;min-height:148px}
+.kpi-top{font-size:12px;color:#666576}
+.kpi-foot{font-size:11px}
+.kpi-value{font-size:clamp(20px,2.1vw,27px)}
+.btn{font-size:12px;min-height:42px;border-radius:11px;padding:10px 15px;white-space:normal;text-align:center}
+.btn.primary{background:#7654d5;border-color:#7654d5;box-shadow:0 6px 15px rgba(106,70,185,.15)}
+.btn.primary:hover:not(:disabled){background:#6946c4;border-color:#6946c4}
+.btn:active:not(:disabled){transform:translateY(0) scale(.99)}
+.field label{font-size:12px;line-height:1.45;font-weight:750;color:#453b55}
+.field input,.field textarea,.field select{min-height:45px;border-radius:10px;font-size:13px;line-height:1.55;background:#fff;color:#2f2940}
+.field textarea{min-height:100px;resize:vertical;padding-top:12px}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:#977cdb;box-shadow:0 0 0 3px rgba(151,124,219,.14);outline:none}
+.hint,.form-note{font-size:12px;line-height:1.65;color:#756e82}
+.small-muted{color:#797482}
+.status{font-size:11px}
+.table-wrap{max-width:100%;overflow-x:auto;scrollbar-width:thin}
+.data-table{width:100%}
+.data-table th{font-size:11px;letter-spacing:.1px;color:#68647a}
+.data-table td{font-size:12px;line-height:1.55}
+/* Account hero: clear hierarchy and more breathable identity editing. */
+.account-hero-v46{
+  border:1px solid #e9ddfa;overflow:hidden;
+  background:linear-gradient(110deg,#eee7fc 0%,#f9f6ff 67%,#f5f0ff 100%);
+  padding:clamp(19px,2.4vw,30px);border-radius:20px;min-height:128px;
+}
+.account-identity-copy .eyebrow{font-size:10px;letter-spacing:1.3px}
+.account-identity-copy strong{font-size:clamp(20px,2vw,28px);letter-spacing:-.7px;line-height:1.35}
+.account-identity-copy small{font-size:12px;line-height:1.55;color:#75688a}
+.account-hero-stats small{font-size:11px}
+.account-hero-stats b{font-size:12px}
+.account-mini-status{display:flex;gap:10px;align-items:center;margin:0 0 22px}
+.account-mini-status>span{font-size:11px;line-height:1.4}
+.account-verify-cta{border:1px solid #d8caef;background:#fff;color:#6344ad;border-radius:999px;padding:8px 13px;font-weight:750;font-size:11px;min-height:34px;display:inline-flex;align-items:center;gap:8px}
+.account-verify-cta:hover{background:#f3ebff;border-color:#af90e6}
+.account-layout-v46{grid-template-columns:minmax(0,1fr) minmax(220px,255px);gap:20px}
+.account-primary,.account-side-v46{min-width:0}
+.account-side-v46{align-self:start}
+.account-side-card{border:1px solid #e9e4f1;box-shadow:var(--shadow);padding:21px;border-radius:18px}
+.account-side-card h3{font-size:14px;margin-bottom:13px}
+.account-side-card dt{font-size:11px;line-height:1.35;color:#777087}
+.account-side-card dd{font-size:12px;line-height:1.55;overflow-wrap:anywhere}
+.account-side-help p,.account-side-help a{font-size:12px;line-height:1.65}
+.account-tabs{padding:5px;gap:4px;border-radius:14px;margin-bottom:15px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.account-tab{flex:initial;min-width:0;min-height:44px;padding:10px 9px;line-height:1.35;text-align:center;font-size:12px;white-space:normal}
+.account-main .panel{margin-bottom:16px}
+.account-main .panel-heading{margin-bottom:15px}
+.profile-edit-header{gap:15px;padding:7px 0 19px}
+.profile-edit-header .avatar{width:70px;height:70px;border-radius:18px}
+.profile-edit-header strong{font-size:14px}
+.profile-edit-header small{font-size:12px;line-height:1.55}
+.profile-form-actions{margin-top:17px;gap:16px}
+.profile-form-actions .btn{min-height:45px}
+.account-shortcut{background:#fcfaff;min-height:85px;gap:13px}
+.account-shortcut strong{font-size:12px;line-height:1.4}
+.account-shortcut small{font-size:11px;line-height:1.55}
+.profile-contact{align-items:center}
+.profile-contact .flow-main small{line-height:1.6}
+.password-eye{min-height:34px}
+/* Profile popup should float over cards in every dashboard and be easy to tap. */
+.profile-menu-host{z-index:40}
+.profile-menu{width:min(338px,calc(100vw - 24px));border:1px solid #e4ddec;box-shadow:0 18px 50px rgba(27,16,55,.19);padding:9px}
+.profile-menu-item{font-size:12px;min-height:49px;gap:12px}
+.profile-menu-item small{font-size:11px;line-height:1.45}
+.profile-menu-toggle{min-height:46px}
+.profile-menu-label strong{font-size:12px}
+.profile-menu-label small{font-size:11px}
+/* Product thumbnails always have a useful fallback and reserve a stable image box. */
+.product-image-frame{display:grid;place-items:center;position:relative;width:100%;height:100%;min-height:100px;overflow:hidden;background:linear-gradient(145deg,#f5f0fc,#ebe4f7)}
+.product-image-frame img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:2}
+.product-image-frame .product-image-fallback{position:relative;z-index:1;display:grid;place-items:center;width:100%;height:100%;font-size:40px}
+.product-image-frame.image-failed img{display:none!important}
+.store-shell .product-card{overflow:hidden}
+.store-shell .product-card .product-cover{overflow:hidden}
+.store-product-card .product-info{min-width:0}
+.store-product-card .product-info h3{overflow-wrap:anywhere}
+/* More informative checkout dialog, without optimistic payment confirmation. */
+body.dialog-open{overflow:hidden}
+.overlay{padding:16px;overscroll-behavior:contain}
+.overlay .dialog{max-height:min(88vh,750px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.dialog-head{position:sticky;top:0;z-index:2;background:inherit;padding-bottom:12px}
+.dialog-head h2{font-size:clamp(17px,2.3vw,22px);line-height:1.35}
+.dialog-close{min-width:40px;min-height:40px}
+.checkout-summary{border:1px solid #ebe4f2;border-radius:14px;padding:10px 15px;background:#faf8fe;margin:12px 0 16px}
+.checkout-item{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 1px;border-bottom:1px solid #ebe7f2;font-size:12px;line-height:1.5}
+.checkout-item:last-child{border-bottom:0}
+.checkout-item>span{flex:1;min-width:0;overflow-wrap:anywhere;color:#5b536a}
+.checkout-item strong{font-size:12px;color:#30253f;text-align:right;flex:none}
+.checkout-item small{color:#81768d}
+.checkout-total{font-weight:800;border-top:1px solid #d9cce8;border-bottom:0;margin-top:3px}
+.checkout-total strong{color:#6744c0;font-size:16px}
+.checkout-confirm{display:flex;align-items:center;gap:10px;padding:11px 2px;font-size:12px;font-weight:650;line-height:1.55;color:#4f455b;cursor:pointer}
+.checkout-confirm input{width:18px;height:18px;flex:none;accent-color:#7754d6}
+/* Reduced layout shifts on narrow screens and 44px minimum touch targets. */
+@media(max-width:1080px){.account-layout-v46{grid-template-columns:minmax(0,1fr) minmax(195px,230px)}.content{padding:27px 22px 52px}}
+@media(max-width:940px){.account-layout-v46{grid-template-columns:minmax(0,1fr)}.account-side-v46{grid-template-columns:repeat(2,minmax(0,1fr))}.account-hero-v46{min-height:108px}}
+@media(max-width:740px){
+  .content{padding:22px 16px 45px}.intro{gap:12px}.intro h1{font-size:24px}.intro p:not(.eyebrow){font-size:12px}
+  .account-hero-v46{padding:19px;gap:14px}.account-hero-stats{padding-top:12px}
+  .account-side-v46{grid-template-columns:1fr 1fr}
+  .account-tab{font-size:12px;padding:10px 4px}
+  .account-main .panel{padding:19px}
+  .store-shell .store-header-inner{gap:9px}
+}
+@media(max-width:520px){
+ .account-mini-status{flex-wrap:wrap;gap:7px}
+ .account-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+ .account-tab{min-height:43px;font-size:12px}
+ .account-side-v46{grid-template-columns:1fr}
+ .account-identity-copy strong{font-size:19px}
+ .account-hero-v46 .account-avatar{width:61px;height:61px}
+ .account-hero-stats{justify-content:space-between;gap:14px}
+ .account-shortcuts{grid-template-columns:1fr}
+ .profile-form-actions .btn{width:100%}
+ .profile-menu{right:10px;top:64px}
+ .store-utility{display:none}
+ .store-header{top:0}
+ .field input,.field select{font-size:16px} /* prevent mobile Safari zoom on focus */
+ .dialog-footer{flex-wrap:wrap}
+ .dialog-footer .btn{min-height:44px;flex:1}
+ .checkout-item{font-size:12px}
+}
+@media(max-width:350px){.content{padding-inline:12px}.account-hero-v46{padding:14px}.account-identity-copy small{font-size:11px}.account-hero-stats{flex-wrap:wrap}.panel{padding:15px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
